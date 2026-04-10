@@ -1,0 +1,25 @@
+        <div class="container">
+            <div class="page-details">
+                <div class="username">[nomUtilisateur]</div>
+                <div>
+                    <a class="link-button-primary" href="">Nouvelle réservation</a>
+                </div>
+            </div>
+            <div class="page-content">
+                <div class="borrowed-equipments">
+                    <div>Equipements loués</div>
+                    <div class="cards-grid">
+                        @for (equipment of equipments; track equipment) {
+                            <equipment-card [equipment]="equipment"></equipment-card>
+                        }
+                    </div>
+                </div>
+                <div class="reserved-equipments">
+                    <div>Equipements réservés</div>
+                    <div class="cards-grid">
+
+                    </div>
+                </div>
+            </div>
+            
+        </div>

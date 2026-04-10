@@ -1,0 +1,54 @@
+:root {
+    --theme-color-01: #373737ff;
+    --theme-color-02: #ff5d2dff;
+    --theme-color-03: rgb(196, 196, 196);
+    --theme-color-04: rgb(230, 230, 230);
+    --text-color-01: rgb(196, 196, 196);
+    --text-color-02: #373737ff;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--theme-color-03);
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: var(--theme-color-01);
+    color: var(--text-color-01);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+header .nav-menu {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    list-style: none;
+}
+
+header .nav-menu > li {
+    margin-right: 1.6rem;
+}
+
+.link-button-primary {
+    background-color: var(--theme-color-02);
+    padding: 1rem 1.4rem;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--text-color-02);
+    font-weight: bolder;
+}
+
+.link-button-secondary {
+    background-color: var(--theme-color-02);
+    padding: 1rem 1.4rem;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--text-color-02);
+    font-weight: bolder;
+}
