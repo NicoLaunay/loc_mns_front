@@ -21,7 +21,7 @@ export class EquipmentService {
     return borrowedEquipments
   }
 
-  getReservedquipments() {
+  getReservedEquipments() {
     const reservedEquipments: Array<Equipment> = [
     {
       'id': 3,

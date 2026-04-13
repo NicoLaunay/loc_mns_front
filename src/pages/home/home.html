@@ -17,7 +17,9 @@
                 <div class="reserved-equipments">
                     <div>Equipements réservés</div>
                     <div class="cards-grid">
-
+                        @for (equipment of reservedEquipments; track equipment) {
+                            <equipment-card [equipment]="equipment"></equipment-card>
+                        }
                     </div>
                 </div>
             </div>
