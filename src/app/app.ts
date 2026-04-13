@@ -11,27 +11,5 @@ import { RouterModule } from '@angular/router';
   
 })
 export class App {
-  protected readonly title = signal('loc_mns_front');
-
-  equipments = [
-    {
-      'id': 1,
-      'name': "pc 1",
-      'icon': ""
-    },
-    {
-      'id': 2,
-      'name': "pc 2",
-      'icon': ""
-    }
-  ]
-  
-  user = {
-    'id': 1,
-    'name': "Pierre",
-    'surname': "Chesnaye",
-    'pseudo': "Pich",
-    'email': "pierre.chesnaye@email.com",
-    'avatar': "avatar.png",
-  }
+  protected readonly title = signal('loc_mns_front');  
 }
