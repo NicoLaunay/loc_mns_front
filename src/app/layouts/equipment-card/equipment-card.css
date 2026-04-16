@@ -1,0 +1,17 @@
+.card {
+    border: 2px solid var(--theme-color-01);
+    border-radius: 0.5rem;
+    background-color: var(--theme-color-04);
+    display: inline-block;
+    padding: 1.4rem;
+    justify-content: center;
+    position: relative;
+}
+
+.card-icons {
+    display: none;
+    position: absolute;
+}
+.card:hover .card-icons {
+    display: block;
+}

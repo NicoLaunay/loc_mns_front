@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { EquipmentCard } from '../../layouts/equipment-card/equipment-card';
 import { EquipmentService } from '../../service/equipment-service';
 import { Equipment } from '../../service/equipment.model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'home',
@@ -9,13 +10,19 @@ import { Equipment } from '../../service/equipment.model';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
+export class Home implements OnInit {
+
+  httpClient = inject(HttpClient)
+
+  borrowedEquipments: Array<Equipment> = []
+  reservedEquipments: Array<Equipment> = []
+
   // APPEL DU SERVICE EquipmentService
   constructor(private equipmentService: EquipmentService) {}
-  
-  borrowedEquipments: Array<Equipment> = []
+
   ngOnInit(): void {
     this.borrowedEquipments = this.equipmentService.getBorrowedEquipments();
+    this.reservedEquipments = this.equipmentService.getReservedEquipments();
   }
 
 }
