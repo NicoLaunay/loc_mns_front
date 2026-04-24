@@ -1,0 +1,46 @@
+.card {
+    border: 1.5px solid var(--color-darker);
+    border-radius: 0.5rem;
+    padding: 1.4rem;
+    background-color: var(--color-lighter);
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.4rem;
+}
+
+.header-info {
+    flex: 1;
+    margin-left: 2rem;
+    border-bottom: 1.5px solid var(--color-dark);
+}
+.header-info .equipment-name {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+.card-icon {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    fill: none;
+    stroke: var(--color-darker);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
+}
+
+.dates {
+    padding-bottom: 0.4rem;
+    border-bottom: 1.5px solid var(--color-dark);
+    margin-bottom: 0.4rem;
+    font-style: italic;
+}
+
+.description p {
+    margin: 0;
+    margin-bottom: 1rem;
+}

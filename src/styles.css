@@ -9,20 +9,24 @@
 html {
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--color-light);
-    font-size: small;
+    font-size: 60%;
 }
 
 body {
     margin: 0;
 }
 
-header nav {
-    width: 100%;
-    background-color: var(--color-darker);
+header{
+  background-color: var(--color-darker);
+}
+header .navbar {
+    /* width: 100%; */
+    margin: 0 20px;
     color: var(--color-lighter);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
 }
 
 header .nav-menu {
@@ -33,7 +37,9 @@ header .nav-menu {
 }
 
 header .nav-menu > li {
+    display: block;
     margin-right: 1.6rem;
+    
 }
 
 header .nav-menu > li > a {
@@ -54,27 +60,51 @@ main {
   background-color: var(--color-light);
 }
 
+.container {
+  margin: 0 20px;
+}
+
 .link-button-primary {
     background-color: var(--color-accent);
-    padding: 1rem 1.4rem;
+    padding: 0.6rem 1rem;
     border-radius: 50px;
     text-decoration: none;
     color: var(--color-lighter);
     font-weight: bolder;
+    display: inline-flex;
+    align-items: center;
 }
 .link-button-primary:hover {
     background-color: var(--color-darker);
     /* color: var(--text-color-02); */
 }
+.link-button-primary > svg {
+  margin-right: 0.6rem;
+  width: 2rem;
+  height: 2rem;
+  fill: var(--color-lighter);
+}
 
 .link-button-secondary {
-    background-color: var(--color-accent);
-    padding: 1rem 1.4rem;
+    background-color: var(--color-dark);
+    padding: 0.6rem 1rem;
     border: 0 solid black;
     border-radius: 50px;
     text-decoration: none;
     color: var(--color-lighter);
     font-weight: bolder;
+    display: inline-flex;
+    align-items: center;
+}
+.link-button-secondary:hover {
+    background-color: var(--color-accent);
+    /* color: var(--text-color-02); */
+}
+.link-button-secondary > svg {
+  margin-right: 0.6rem;
+  width: 2rem;
+  height: 2rem;
+  fill: var(--color-lighter);
 }
 
 /* Gestion de l'apparence des notifications */
