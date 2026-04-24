@@ -1,7 +1,11 @@
-.page-details {
+.page-header {
     display: flex;
     justify-content: space-between;
     margin: 1.4rem;
+}
+.page-header h1 {
+font-size: 2rem;
+font-weight: bolder;
 }
 
 .page-content {
@@ -21,7 +25,7 @@
 .borrowed-equipments > div:first-child, 
 .reserved-equipments > div:first-child {
     font-weight: bold;
-    border-bottom: 2px solid var(--theme-color-01);
+    border-bottom: 2px solid var(--color-darker);
     padding-bottom: 0.2rem;
     margin-bottom: 0.5rem;
 }

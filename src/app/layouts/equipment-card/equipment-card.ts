@@ -1,9 +1,10 @@
 import { Component, input, Input } from '@angular/core';
-import { Equipment } from '../../service/equipment.model';
+import { Equipment } from '../../services/equipment.model';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'equipment-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './equipment-card.html',
   styleUrl: './equipment-card.css',
 })

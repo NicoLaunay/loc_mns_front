@@ -1,24 +1,25 @@
 :root {
-    --theme-color-01: #373737ff;
-    --theme-color-02: #ff5d2dff;
-    --theme-color-03: rgb(196, 196, 196);
-    --theme-color-04: rgb(230, 230, 230);
-    --text-color-01: rgb(196, 196, 196);
-    --text-color-02: #373737ff;
+    --color-darker: #373737ff;
+    --color-dark: rgb(84, 84, 84);
+    --color-accent: #ff5d2dff;
+    --color-light: rgb(196, 196, 196);
+    --color-lighter: rgb(230, 230, 230);
 }
 
 html {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--theme-color-03);
+    background-color: var(--color-light);
+    font-size: small;
 }
 
 body {
     margin: 0;
 }
 
-header {
-    background-color: var(--theme-color-01);
-    color: var(--text-color-01);
+header nav {
+    width: 100%;
+    background-color: var(--color-darker);
+    color: var(--color-lighter);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -35,20 +36,74 @@ header .nav-menu > li {
     margin-right: 1.6rem;
 }
 
+header .nav-menu > li > a {
+    text-decoration: none;
+    color: var(--color-light);
+}
+header .nav-menu > li > a:hover {
+    text-decoration: none;
+    color: var(--color-accent);
+}
+
+header .burger {
+  color: var(--color-light);
+}
+
+main {
+  padding: 2rem 0;
+  background-color: var(--color-light);
+}
+
 .link-button-primary {
-    background-color: var(--theme-color-02);
+    background-color: var(--color-accent);
     padding: 1rem 1.4rem;
     border-radius: 50px;
     text-decoration: none;
-    color: var(--text-color-02);
+    color: var(--color-lighter);
     font-weight: bolder;
+}
+.link-button-primary:hover {
+    background-color: var(--color-darker);
+    /* color: var(--text-color-02); */
 }
 
 .link-button-secondary {
-    background-color: var(--theme-color-02);
+    background-color: var(--color-accent);
     padding: 1rem 1.4rem;
+    border: 0 solid black;
     border-radius: 50px;
     text-decoration: none;
-    color: var(--text-color-02);
+    color: var(--color-lighter);
     font-weight: bolder;
+}
+
+/* Gestion de l'apparence des notifications */
+.mdc-snackbar {
+  &.valid .mat-mdc-snackbar-surface {
+    background-color: green;
+  }
+  &.info .mat-mdc-snackbar-surface {
+    background-color: blue;
+  }
+  &.warning .mat-mdc-snackbar-surface {
+    background-color: orange;
+  }
+  &.error .mat-mdc-snackbar-surface {
+    background-color: red;
+  }
+}
+
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 300px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 1em;
+
+  .mdc-button {
+    width: fit-content;
+    min-width: 200px;
+  }
 }
