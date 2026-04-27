@@ -1,0 +1,21 @@
+<div class="container">
+    <h1>Demande Gestionnaire</h1>
+    <form action="post">
+        <div class="input-block">
+            <label for="title">Objet</label>
+            <input name="title" id="title" type="text">
+        </div>
+
+        <div class="input-block">
+            <label for="content">Contenu</label>
+            <textarea name="content" id="content"></textarea>
+        </div>
+        
+        <a class="link-button-primary" href="">
+            Envoyer
+        </a>
+        <a class="link-button-secondary" [routerLink]="['/']">
+            Annuler
+        </a>
+    </form>
+</div>
