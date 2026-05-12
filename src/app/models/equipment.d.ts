@@ -1,6 +1,12 @@
 import { Location } from "./location";
 import { Model } from "./model";
 
+type TestEquipment = {
+    id: Number;
+    name: String;
+    icon: String;
+}
+
 type Equipment = {
     id: Number;
     name: String;

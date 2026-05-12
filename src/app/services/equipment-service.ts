@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Equipment } from './equipment.model';
-import { EquipmentWithLoans } from '../models/equipment';
+import { TestEquipment, Equipment, EquipmentWithLoans } from '../models/equipment';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -12,8 +11,8 @@ export class EquipmentService {
   // METHODES COMMUNES
   // -------------------------------------------------------------------
 
-  getBorrowedEquipments(userId:Number): Array<Equipment> {
-    const borrowedEquipments: Array<Equipment> = [
+  getBorrowedEquipments(userId:Number): Array<TestEquipment> {
+    const borrowedEquipments: Array<TestEquipment> = [
     {
       'id': 1,
       'name': "pc 1",
@@ -28,8 +27,8 @@ export class EquipmentService {
     return borrowedEquipments
   }
 
-  getReservedEquipments(userId:Number): Array<Equipment> {
-    const reservedEquipments: Array<Equipment> = [
+  getReservedEquipments(userId:Number): Array<TestEquipment> {
+    const reservedEquipments: Array<TestEquipment> = [
     {
       'id': 3,
       'name': "souris 1",
@@ -58,8 +57,8 @@ export class EquipmentService {
   //   return borrowedEquipments
   // }
 
-  getAllEquipments(): Array<Equipment> {
-    const equipments: Array<Equipment> = [
+  getAllEquipments(): Array<TestEquipment> {
+    const equipments: Array<TestEquipment> = [
     {
       'id': 1,
       'name': "pc 1",

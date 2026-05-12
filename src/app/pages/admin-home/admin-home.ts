@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Equipment } from '../../services/equipment.model';
 import { EquipmentService } from '../../services/equipment-service';
 import { AdminEquipmentCard } from "../../layouts/admin-equipment-card/admin-equipment-card";
 import { DataClass } from '../../models/data-class.enum';
+import { Equipment, TestEquipment } from '../../models/equipment';
 
 @Component({
   selector: 'admin-home',
@@ -17,7 +17,7 @@ export class AdminHome {
   protected showedList: DataClass = DataClass.EQUIPMENTS
 
   constructor(private equipmentService: EquipmentService) {}
-  allEquipments: Equipment[] = []
+  allEquipments: TestEquipment[] = []
 
   ngOnInit(): void {
     this.allEquipments = this.equipmentService.getAllEquipments();
