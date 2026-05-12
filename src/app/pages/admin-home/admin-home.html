@@ -13,7 +13,7 @@
             <div class="cards-grid">
                 @switch (showedList) {
                     @case (DataClass.EQUIPMENTS) {
-                        @for (equipment of allEquipments; track equipment) {
+                        @for (equipment of allEquipments(); track equipment) {
                             <admin-equipment-card [equipment]="equipment"></admin-equipment-card>
                         }
                     }

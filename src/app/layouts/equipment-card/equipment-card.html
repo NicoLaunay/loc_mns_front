@@ -4,8 +4,8 @@
         <rect width="18" height="13" x="3" y="4" rx="2"/>
         <path d="M1 20h22"/>
     </svg>
-    <div class="equipment-name">equipment().model</div>
-    <div class="equipment-loan-date">equipment().model</div>
+    <div class="equipment-name">{{equipment()?.name}}</div>
+    <div class="equipment-loan-date">{{equipment()?.model?.name}}</div>
     <div class="card-button-container">
         <a class="card-button" routerLink="/equipment/{{equipment()?.id}}">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

@@ -9,7 +9,7 @@
                 <div class="borrowed-equipments">
                     <div>Equipements loués</div>
                     <div class="cards-grid">
-                        @for (equipment of borrowedEquipments; track equipment) {
+                        @for (equipment of borrowedEquipments(); track equipment) {
                             <equipment-card [equipment]="equipment"></equipment-card>
                         }
                     </div>
@@ -17,7 +17,7 @@
                 <div class="reserved-equipments">
                     <div>Equipements réservés</div>
                     <div class="cards-grid">
-                        @for (equipment of reservedEquipments; track equipment) {
+                        @for (equipment of reservedEquipments(); track equipment) {
                             <equipment-card [equipment]="equipment"></equipment-card>
                         }
                     </div>

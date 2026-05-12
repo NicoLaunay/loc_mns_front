@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Equipment } from '../../services/equipment.model';
+import { Equipment } from '../../models/equipment';
 
 @Component({
   selector: 'admin-equipment-card',

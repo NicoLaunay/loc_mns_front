@@ -1,6 +1,6 @@
 import { Component, input, Input } from '@angular/core';
-import { Equipment } from '../../services/equipment.model';
 import { RouterLink } from "@angular/router";
+import { Equipment } from '../../models/equipment';
 
 @Component({
   selector: 'equipment-card',

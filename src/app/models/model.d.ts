@@ -8,5 +8,5 @@ type Model = {
     isComponent: Boolean = false;
     // documentations: Array<Documentation>;
     components: Array<Model> = [];
-    icon: String = ""
+    // icon: String = ""
 }
