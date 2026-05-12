@@ -6,7 +6,7 @@
         </svg>
         <div class="line-card-info">
             <div>
-                <span class="id">[Identifiant]</span> - <span class="model">[Modèle]</span>
+                <span class="id">{{equipment()?.id}}</span> - <span class="model">{{equipment()?.model?.name}}</span>
             </div>
             <div>
                 <span class="status">[Statut]</span> - 
@@ -15,7 +15,7 @@
                 <span class="end-date">[Date fin]</span>
             </div>
             <div>
-                <span class="condition">[Condition]</span>
+                <span class="condition">{{equipment()?.condition}}</span>
             </div>
         </div>
         <div class="button-container">
