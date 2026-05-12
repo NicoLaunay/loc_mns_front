@@ -6,6 +6,6 @@ type Model = {
     description: String;
     type: Type;
     isComponent: Boolean;
-    documentations: Array<Documentation>;
+    // documentations: Array<Documentation>;
     components: Array<Model>;
 }

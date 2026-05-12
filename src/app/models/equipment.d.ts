@@ -8,3 +8,7 @@ type Equipment = {
     model: Model;
     location: Location;
 }
+
+type EquipmentWithLoans = Equipment & {
+    loans: Array<LoanWithoutEquipment>
+}

@@ -1,4 +1,4 @@
-type appUser = {
+type AppUser = {
     id: number;
     name: string;
     surname: string;
@@ -7,4 +7,8 @@ type appUser = {
     accreditation: Accreditation;
     role: Role;
     avatarUrl: string;
+}
+
+type AppUserWithLoans = AppUser & {
+    loans: Array<LoanWithoutUser>
 }
