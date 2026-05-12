@@ -4,14 +4,14 @@
     align-items: center;
 }
 .page-header h1 {
-font-size: 2rem;
-font-weight: bolder;
+    font-size: 2rem;
+    font-weight: bolder;
 }
 
 .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
 }
 
 .borrowed-equipments, 

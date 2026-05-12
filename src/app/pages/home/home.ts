@@ -3,10 +3,11 @@ import { EquipmentCard } from '../../layouts/equipment-card/equipment-card';
 import { EquipmentService } from '../../services/equipment-service';
 import { Equipment } from '../../services/equipment.model';
 import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'home',
-  imports: [EquipmentCard],
+  imports: [EquipmentCard, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -20,8 +21,8 @@ export class Home implements OnInit {
 
   ngOnInit(): void {
 
-    this.borrowedEquipments = this.equipmentService.getBorrowedEquipments();
-    this.reservedEquipments = this.equipmentService.getReservedEquipments();
+    this.borrowedEquipments = this.equipmentService.getBorrowedEquipments(0);
+    this.reservedEquipments = this.equipmentService.getReservedEquipments(0);
 
   }
 
