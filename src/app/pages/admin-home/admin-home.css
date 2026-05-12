@@ -1,0 +1,14 @@
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+.equipments {
+    margin-top: 1rem;
+}
+.equipments > ul:first-child {
+    font-weight: bold;
+    border-bottom: 1.5px solid var(--color-darker);
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.5rem;
+}

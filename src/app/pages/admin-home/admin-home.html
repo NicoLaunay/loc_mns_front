@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="page-header">
+        <h1 class="username">Prénom NOM</h1>
+    </div>
+    <div class="page-content">
+        <div class="equipments">
+            <ul>
+                <li><button (click)="showList(DataClass.EQUIPMENTS)">Equipements</button></li>
+                <li><button (click)="showList(DataClass.USERS)">Utilisateurs</button></li>
+                <li>Equipements</li>
+                <li>Equipements</li>
+            </ul>
+            <div class="cards-grid">
+                @switch (showedList) {
+                    @case (DataClass.EQUIPMENTS) {
+                        @for (equipment of allEquipments; track equipment) {
+                            <admin-equipment-card [equipment]="equipment"></admin-equipment-card>
+                        }
+                    }
+                    @case (DataClass.USERS) {
+                        pas de users pour le moment
+                    }
+                    
+                }
+                
+            </div>
+        </div>
+    </div>
+    
+</div>
