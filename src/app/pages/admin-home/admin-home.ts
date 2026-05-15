@@ -1,10 +1,10 @@
-import { Component, inject, Signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { EquipmentService } from '../../services/equipment-service';
 import { AdminEquipmentCard } from "../../layouts/admin-equipment-card/admin-equipment-card";
 import { DataClass } from '../../enums/data-class.enum';
-import { Equipment, TestEquipment } from '../../models/equipment';
-import { Observable } from 'rxjs';
+
 import { NgClass } from '@angular/common';
+import { UtilitiesService } from '../../services/utilities-service';
 @Component({
   selector: 'admin-home',
   imports: [AdminEquipmentCard, NgClass],
@@ -12,6 +12,8 @@ import { NgClass } from '@angular/common';
   styleUrl: './admin-home.css',
 })
 export class AdminHome {
+
+  private utilService = inject(UtilitiesService)
 
   // Exposer l'enum au template
   protected readonly dataClass = DataClass;
@@ -31,7 +33,8 @@ export class AdminHome {
   }
 
   getCreateFormUrl(dataClass: DataClass): String {
-    return `/new-${this.slugify(this.getDataClassName(dataClass))}`
+    let slugifiedClassName = this.utilService.slugify(this.getDataClassName(dataClass))
+    return `/new-${slugifiedClassName}`
   }
 
   getDataClassName(dataClass: DataClass): String {
@@ -42,15 +45,6 @@ export class AdminHome {
     this.showedClass = dataClass
     this.showedClassName = this.getDataClassName(dataClass)
     this.showedClassCreateFormUrl = this.getCreateFormUrl(dataClass)
-  }
-
-  slugify(string: String): String {
-    return string
-      .trim()
-      .toLowerCase()
-      .normalize("NFD") //sépare les caractères accentués en caractères + accent
-      .replace(/[\u0300-\u036f]/g, "") // supprime les caractères "accents"
-      .replaceAll(" ", "-")
   }
 
 }
