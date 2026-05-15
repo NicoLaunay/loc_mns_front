@@ -4,20 +4,20 @@
     </div>
     <div class="page-content">
         <div class="equipments">
-            <ul>
-                <li><button (click)="showList(DataClass.EQUIPMENTS)">Equipements</button></li>
-                <li><button (click)="showList(DataClass.USERS)">Utilisateurs</button></li>
-                <li>Equipements</li>
-                <li>Equipements</li>
+            <ul class="data-class-menu">
+                @for (entry of dataClassEntries; track entry[0]) {
+                    <li><button [ngClass]="{'active': showedList == entry[1]}" (click)="showList(entry[1])">{{ entry[1] }}</button></li>
+                }
             </ul>
+
             <div class="cards-grid">
                 @switch (showedList) {
-                    @case (DataClass.EQUIPMENTS) {
+                    @case (dataClass.EQUIPMENTS) {
                         @for (equipment of allEquipments(); track equipment) {
                             <admin-equipment-card [equipment]="equipment"></admin-equipment-card>
                         }
                     }
-                    @case (DataClass.USERS) {
+                    @case (dataClass.USERS) {
                         pas de users pour le moment
                     }
                     

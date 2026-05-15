@@ -6,9 +6,29 @@
 .equipments {
     margin-top: 1rem;
 }
-.equipments > ul:first-child {
-    font-weight: bold;
+.data-class-menu {
+    display: flex;
+    flex-direction: row;
     border-bottom: 1.5px solid var(--color-darker);
+    padding-left: 0;
     padding-bottom: 0.2rem;
     margin-bottom: 0.5rem;
+}
+.data-class-menu > li {
+    list-style-type: none;
+    margin-right: 0.5rem;
+}
+.data-class-menu > li > button {
+    background: none;
+    border: 0;
+    font-weight: bold;
+    color: var(--color-dark);
+    
+}
+.data-class-menu > li > button.active {
+ color: var(--color-accent);
+}
+
+.data-class-menu > li > button:hover {
+    color: var(--color-darkest);
 }
