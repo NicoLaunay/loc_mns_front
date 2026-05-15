@@ -13,15 +13,18 @@ export class NewLoanForm {
   equipmentTypes: Array<Type> = [
     {
       "id": 1,
-      "name": "PC portable"
+      "name": "PC portable",
+      "icon": ""
     },
     {
       "id": 2,
-      "name": "Tour"
+      "name": "Tour",
+      "icon": ""
     },
     {
       "id": 3,
-      "name": "Ecran"
+      "name": "Ecran",
+      "icon": ""
     },
   ]
   equipmentModels: Array<Model> = [
@@ -32,7 +35,8 @@ export class NewLoanForm {
       "type": 
       {
         "id": 1,
-        "name": "PC portable"
+        "name": "PC portable",
+        "icon": ""
       },
       "isComponent": false,
       // "documentations": "doc URL",
@@ -45,7 +49,8 @@ export class NewLoanForm {
       "type": 
       {
         "id": 1,
-        "name": "PC portable"
+        "name": "PC portable",
+        "icon": ""
       },
       "isComponent": false,
       // "documentations": "doc URL",

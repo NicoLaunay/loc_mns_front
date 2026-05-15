@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>Nouveau Type d'équipement</h1>
+
+    <form action="POST" action="/submit">
+        <div class="input-block">
+            <label for="name">Nom</label>
+            <input name="name" type="text">
+        </div>
+
+        <div class="input-block">
+            <label for="icon">Icône (SVG)</label>
+            <textarea name="icon" type="text"></textarea>
+        </div>
+        
+        <a class="link-button-primary" href="" type="submit">
+            Créer
+        </a>
+        <a class="link-button-secondary" [routerLink]="['/home/admin']">
+            Annuler
+        </a>
+    </form>
+</div>

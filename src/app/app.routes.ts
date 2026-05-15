@@ -9,6 +9,7 @@ import { ExempleEditAccreditation } from './pages/exemple-edit-accreditation/exe
 import { RequestForm } from './pages/request-form/request-form';
 import { NewLoanForm } from './pages/new-loan-form/new-loan-form';
 import { AdminHome } from './pages/admin-home/admin-home';
+import { NewTypeForm } from './pages/new-type-form/new-type-form';
 
 export const routes: Routes = [
     {
@@ -30,6 +31,11 @@ export const routes: Routes = [
         path: 'new-loan',
         component: NewLoanForm,
         title: 'LocNES - Nouvelle Réservation',
+    },
+    {
+        path: 'new-type',
+        component: NewTypeForm,
+        title: 'LocNES - Nouveau Type',
     },
     {
         path: 'equipment/:id',
