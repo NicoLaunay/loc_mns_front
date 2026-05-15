@@ -1,13 +1,14 @@
-export enum DataClass {
-    TYPES = "Types",
+export enum DataClass {    
+    EQUIPMENTS = "Équipements",
     MODELS = "Modèles",
-    EQUIPMENTS = "Equipements",
+    TYPES = "Types",
+    DOCUMENTATIONS = "Documentations",
     USERS = "Utilisateurs",
     ACCREDITATIONS = "Accréditations",
     ROLES = "Rôles",
-    DOCUMENTATIONS = "Documentations",
+    
     LOCATIONS = "Localisations",
-    STATES = "Etats",
+    STATES = "États",
     MODIFICATIONS = "Modifications",
     LOANS = "Prêts",
     REQUESTS = "Demandes"
