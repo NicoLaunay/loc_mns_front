@@ -10,6 +10,7 @@ import { RequestForm } from './pages/request-form/request-form';
 import { NewLoanForm } from './pages/new-loan-form/new-loan-form';
 import { AdminHome } from './pages/admin-home/admin-home';
 import { NewTypeForm } from './pages/new-type-form/new-type-form';
+import { NewModelForm } from './pages/new-model-form/new-model-form';
 
 export const routes: Routes = [
     {
@@ -36,6 +37,11 @@ export const routes: Routes = [
         path: 'new-type',
         component: NewTypeForm,
         title: 'LocNES - Nouveau Type',
+    },
+    {
+        path: 'new-modele',
+        component: NewModelForm,
+        title: 'LocNES - Nouveau Modèle',
     },
     {
         path: 'equipment/:id',

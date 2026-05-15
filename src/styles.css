@@ -66,6 +66,7 @@ main {
 }
 
 .link-button-primary {
+    border: 0;
     background-color: var(--color-accent);
     padding: 0.6rem 1rem;
     border-radius: 50px;
@@ -87,6 +88,7 @@ main {
 }
 
 .link-button-secondary {
+    border: 0;
     background-color: var(--color-dark);
     padding: 0.6rem 1rem;
     border: 0 solid black;

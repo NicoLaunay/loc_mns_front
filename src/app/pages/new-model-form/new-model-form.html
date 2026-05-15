@@ -1,0 +1,74 @@
+<div class="container">
+    <h1>Nouveau Modèle d'équipement</h1>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="input-block">
+            <label for="name">Nom</label>
+            <input formControlName="name" type="text" id="name">
+        </div>
+
+        <div class="input-block">
+            <label for="description">Description</label>
+            <textarea formControlName="description" type="text" id="description"></textarea>
+        </div>
+
+        <div class="input-block">
+            <label for="type">Type</label>
+            <select class="dropdown-menu" formControlName="type" id="type">
+                @for (type of equipmentTypes; track type) {
+                    <option value="{{type?.id}}">{{ type?.name }}</option>
+                }
+            </select>
+        </div>
+
+        <div class="input-block">
+            <label>
+                <input type="checkbox" formControlName="isComponent">
+                est un Composant
+            </label>
+        </div>
+
+        <div class="input-block components-select">
+            <label>Composants</label>
+            <div formArrayName="lineComponent">
+
+                @for (line of lineComponent.controls; track line; let i = $index) {
+                    <div class="line-component" [formGroupName]="i">
+
+                        <!-- Dropdown sélection de composant -->
+                        <select formControlName="component">
+                            @for (component of components; track component) {
+                                <option [value]=component.id>{{ component.name }}</option>
+                            }
+                        </select>
+
+                        <!-- Input nombre -->
+                        <input type="number" formControlName="amount" min="1"/>
+                    </div>
+                }
+                
+            </div>
+
+            <!-- Bouton ajout -->
+            <button type="button" (click)="addComponent()">
+                + Ajouter un Composant
+            </button>
+<!-- 
+            <label for="components">Composants</label>
+            <div >
+                <select class="dropdown-menu" name="components" id="components">
+                    @for (type of equipmentTypes; track type) {
+                        <option value="{{type?.id}}">{{ type?.name }}</option>
+                    }
+                </select>
+            </div> -->
+        </div>
+        
+        <button class="link-button-primary" (click)="onSubmit()">
+            Créer
+        </button>
+        <a class="link-button-secondary" [routerLink]="['/home/admin']">
+            Annuler
+        </a>
+    </form>
+</div>
