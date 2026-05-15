@@ -6,21 +6,34 @@
         <div class="equipments">
             <ul class="data-class-menu">
                 @for (entry of dataClassEntries; track entry[0]) {
-                    <li><button [ngClass]="{'active': showedList == entry[1]}" (click)="showList(entry[1])">{{ entry[1] }}</button></li>
+                    <li><button [ngClass]="{'active': showedClass == entry[1]}" (click)="showList(entry[1])">{{ entry[1] }}</button></li>
                 }
             </ul>
 
             <div class="cards-grid">
-                @switch (showedList) {
+                <a class="link-button-primary" href="{{ showedClassCreateFormUrl }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2" />
+                    </svg>
+                    Créer {{ showedClassName }}
+                </a>
+                @switch (showedClass) {
                     @case (dataClass.EQUIPMENTS) {
                         @for (equipment of allEquipments(); track equipment) {
                             <admin-equipment-card [equipment]="equipment"></admin-equipment-card>
                         }
                     }
-                    @case (dataClass.USERS) {
-                        pas de users pour le moment
-                    }
-                    
+                    @case (dataClass.MODELS) {}
+                    @case (dataClass.TYPES) {}
+                    @case (dataClass.DOCUMENTATIONS) {}
+                    @case (dataClass.USERS) {}
+                    @case (dataClass.ACCREDITATIONS) {}
+                    @case (dataClass.ROLES) {}
+                    @case (dataClass.LOCATIONS) {}
+                    @case (dataClass.STATES) {}
+                    @case (dataClass.MODIFICATIONS) {}
+                    @case (dataClass.LOANS) {}
+                    @case (dataClass.REQUESTS) {}
                 }
                 
             </div>

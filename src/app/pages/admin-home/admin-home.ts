@@ -17,7 +17,9 @@ export class AdminHome {
   protected readonly dataClass = DataClass;
   protected readonly dataClassEntries = Object.entries(this.dataClass) as [String, DataClass][]
 
-  protected showedList: DataClass = DataClass.EQUIPMENTS
+  protected showedClass: DataClass = DataClass.EQUIPMENTS
+  protected showedClassName: String = this.getDataClassName(this.showedClass)
+  protected showedClassCreateFormUrl: String = this.getCreateFormUrl(this.showedClass)
 
   private equipmentService = inject(EquipmentService)
 
@@ -28,8 +30,27 @@ export class AdminHome {
     console.log(this.allEquipments);
   }
 
-  showList(list: DataClass): void {
-    this.showedList = list
+  getCreateFormUrl(dataClass: DataClass): String {
+    return `/new-${this.slugify(this.getDataClassName(dataClass))}`
+  }
+
+  getDataClassName(dataClass: DataClass): String {
+    return dataClass.valueOf().slice(0, -1)
+  }
+
+  showList(dataClass: DataClass): void {
+    this.showedClass = dataClass
+    this.showedClassName = this.getDataClassName(dataClass)
+    this.showedClassCreateFormUrl = this.getCreateFormUrl(dataClass)
+  }
+
+  slugify(string: String): String {
+    return string
+      .trim()
+      .toLowerCase()
+      .normalize("NFD") //sépare les caractères accentués en caractères + accent
+      .replace(/[\u0300-\u036f]/g, "") // supprime les caractères "accents"
+      .replaceAll(" ", "-")
   }
 
 }

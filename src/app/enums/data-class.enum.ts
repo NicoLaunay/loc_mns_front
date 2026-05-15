@@ -6,7 +6,6 @@ export enum DataClass {
     USERS = "Utilisateurs",
     ACCREDITATIONS = "Accréditations",
     ROLES = "Rôles",
-    
     LOCATIONS = "Localisations",
     STATES = "États",
     MODIFICATIONS = "Modifications",
