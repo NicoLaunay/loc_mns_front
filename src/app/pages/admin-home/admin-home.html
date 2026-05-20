@@ -23,7 +23,11 @@
                             <admin-equipment-card [equipment]="equipment"></admin-equipment-card>
                         }
                     }
-                    @case (dataClass.MODELS) {}
+                    @case (dataClass.MODELS) {
+                        <!-- @for (model of allModels(); track model) {
+                            <admin-equipment-card [equipment]="model"></admin-equipment-card>
+                        } -->
+                    }
                     @case (dataClass.TYPES) {}
                     @case (dataClass.DOCUMENTATIONS) {}
                     @case (dataClass.USERS) {}
@@ -32,7 +36,11 @@
                     @case (dataClass.LOCATIONS) {}
                     @case (dataClass.STATES) {}
                     @case (dataClass.MODIFICATIONS) {}
-                    @case (dataClass.LOANS) {}
+                    @case (dataClass.LOANS) {
+                        @for (loan of showedLoans(); track loan) {
+                            <admin-loan-card [loan]="loan"></admin-loan-card>
+                        }
+                    }
                     @case (dataClass.REQUESTS) {}
                 }
                 

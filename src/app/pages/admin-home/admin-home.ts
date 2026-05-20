@@ -5,9 +5,11 @@ import { DataClass } from '../../enums/data-class.enum';
 
 import { NgClass } from '@angular/common';
 import { UtilitiesService } from '../../services/utilities-service';
+import { LoanService } from '../../services/loan-service';
+import { AdminLoanCard } from '../../layouts/admin-loan-card/admin-loan-card';
 @Component({
   selector: 'admin-home',
-  imports: [AdminEquipmentCard, NgClass],
+  imports: [AdminEquipmentCard, AdminLoanCard, NgClass],
   templateUrl: './admin-home.html',
   styleUrl: './admin-home.css',
 })
@@ -24,12 +26,15 @@ export class AdminHome {
   protected showedClassCreateFormUrl: String = this.getCreateFormUrl(this.showedClass)
 
   private equipmentService = inject(EquipmentService)
+  private loanService = inject(LoanService)
 
-  protected allEquipments = this.equipmentService.equipmentList
+  protected allEquipments = this.equipmentService.allEquipments
+  protected showedLoans = this.loanService.showedLoans
+  // protected allModels = this.ModelService.allModels
 
   ngOnInit(): void {
     this.equipmentService.getAll().subscribe()
-    console.log(this.allEquipments);
+    this.loanService.getAll().subscribe()
   }
 
   getCreateFormUrl(dataClass: DataClass): String {
