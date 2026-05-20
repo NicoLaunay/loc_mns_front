@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,4 +8,27 @@ import { inject, Injectable, signal } from '@angular/core';
 export class LoanService {
   httpClient = inject(HttpClient)
   readonly allLoans = signal<Loan[]>([])
+  readonly showedLoans = signal<Loan[]>([])
+
+  // -------------------------------------------------------------------
+  // METHODES COMMUNES
+  // -------------------------------------------------------------------
+
+
+  // -------------------------------------------------------------------
+  // METHODES ADMIN
+  // -------------------------------------------------------------------
+
+  getAllByUserId(id: Number): Observable<Loan[]> {
+    return this.httpClient
+      .get<Loan[]>(`http://localhost:8080/loan/user${id}`)
+      .pipe(tap(loans => this.showedLoans.set(loans)))
+  }
+
+  getAll(): Observable<Loan[]> {
+    return this.httpClient
+      .get<Loan[]>('http://localhost:8080/loan/list')
+      .pipe(tap(allLoans => this.showedLoans.set(allLoans))) // met à jour accreditationList avant de return le reultat de la requête
+
+  }
 }
