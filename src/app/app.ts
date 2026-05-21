@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterLinkWithHref, RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { AccreditationService } from './services/accreditation';
+import { AuthService } from './services/authservice';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,16 @@ export class App {
 
   accreditationService = inject(AccreditationService)
 
+  authService = inject(AuthService)
+
   ngOnInit() {
     this.accreditationService.getAll()
+  }
+
+  logout() {
+    this.authService.jwtInfo.set(null)
+    console.log('jwt on logout :');
+    console.log(this.authService.jwtInfo());
+    
   }
 }

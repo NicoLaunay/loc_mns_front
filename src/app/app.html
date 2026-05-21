@@ -2,15 +2,21 @@
     <header>
         <nav class="navbar">
             <!-- Logo -->
-            <a class="navbar-brand" [routerLink]="['/']">
+            <a class="navbar-brand" [routerLink]="['/home']">
                 <img src="assets/logo-locNES-small.png" alt="logo de LocMNS">
             </a>
+
             <!-- Menu de navigation -->
             <ul class="nav-menu">
-                <li><a class="active" [routerLink]="['/']">Accueil</a></li>
-                <li><a href="#">Historique</a></li>
-                <li><a href="#">Mon Compte</a></li>
-                <li><a href="#">Déconnexion</a></li>
+                    <li><a class="active" [routerLink]="['/home']">Accueil</a></li>
+
+                @if(!authService.jwtInfo()) {
+                    <li><a routerLink="/login">Connexion</a></li>
+                } @else {
+                    <li><a routerLink="#">Mon Compte</a></li>
+                    <li><a routerLink="#" (click)="logout()">Déconnexion</a></li>
+                }
+
             </ul>
         </nav>
     </header>

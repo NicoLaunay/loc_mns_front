@@ -1,0 +1,24 @@
+<form class="formulaire" [formGroup]="formulaire" (ngSubmit)="onLogin()"> <!-- crochets = on passe une variable, parenthèses = -->
+    <!-- Pas de champ names dasn accrediatation -->
+    <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Ex. john.doe@email.com" formControlName="email">
+        @if(formulaire.get('email')?.hasError('email')) {
+            <mat-error>Doit être une adresse mail</mat-error> <!-- les mat-errors ne s'affichent de toute façon que si le champ est en erreur, sinon il sont invisibles. le @if sert juste à choisir le quel est le bon -->
+        } @else {
+            <mat-error>Le champ est obligatoire</mat-error>
+        }
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Mot de Passe</mat-label>
+        <input formControlName="password">
+        <mat-error>Le champ est obligatoire</mat-error>
+    </mat-form-field>
+
+    <button class="link-button-primary" type="submit">
+        Se connecter
+    </button>
+    
+</form>
+
