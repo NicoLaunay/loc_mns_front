@@ -24,9 +24,6 @@ export class App {
   }
 
   logout() {
-    this.authService.jwtInfo.set(null)
-    console.log('jwt on logout :');
-    console.log(this.authService.jwtInfo());
-    
+    this.authService.logout()
   }
 }

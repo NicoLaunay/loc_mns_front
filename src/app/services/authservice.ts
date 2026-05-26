@@ -42,4 +42,9 @@ export class AuthService {
     }
   }
 
+  logout() {
+    this.jwtInfo.set(null)
+    localStorage.removeItem("jwt")   
+  }
+
 }
