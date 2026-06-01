@@ -6,7 +6,7 @@ import { AuthService } from './services/authservice';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterModule, RouterLinkActive],
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
   

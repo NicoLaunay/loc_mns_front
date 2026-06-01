@@ -21,8 +21,8 @@ export const routes: Routes = [
     { path: 'login', component: Login, title: 'LocNES - Login' },
     { path: 'edit-loan', component: EditLoanForm, title: 'LocNES - Nouvelle Réservation', canActivate:[userGuard] },
     { path: 'edit-loan/:id', component: EditLoanForm, title: 'LocNES - Nouvelle Réservation', canActivate:[userGuard] },
-    { path: 'new-type', component: NewTypeForm, title: 'LocNES - Nouveau Type', canActivate:[adminGuard] },
-    { path: 'new-modele', component: NewModelForm, title: 'LocNES - Nouveau Modèle', canActivate:[adminGuard] },
+    { path: 'edit-type', component: NewTypeForm, title: 'LocNES - Nouveau Type', canActivate:[adminGuard] },
+    { path: 'edit-modele', component: NewModelForm, title: 'LocNES - Nouveau Modèle', canActivate:[adminGuard] },
     { path: 'equipment/:id', component: EquipmentDetail, title: 'LocNES - Fiche équipement', canActivate:[userGuard] },
     { path: 'equipment/:id/request', component: RequestForm, title: 'LocNES - Demande Gestionnaire', canActivate:[userGuard] },
     
