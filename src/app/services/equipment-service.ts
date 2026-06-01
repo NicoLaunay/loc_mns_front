@@ -1,85 +1,49 @@
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { TestEquipment, Equipment, EquipmentWithLoans } from '../models/equipment';
 import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EquipmentService {
 
+  httpClient = inject(HttpClient)
+
+  readonly allEquipments = signal<Equipment[]>([])
+  readonly availableEquipmentsOfModel = signal<Equipment[]>([])
+  readonly nbAvailableOfModel = computed(() => this.availableEquipmentsOfModel().length)
+
   // -------------------------------------------------------------------
   // METHODES COMMUNES
   // -------------------------------------------------------------------
 
-  getBorrowedEquipments(userId:Number): Array<TestEquipment> {
-    const borrowedEquipments: Array<TestEquipment> = [
-    {
-      'id': 1,
-      'name': "pc 1",
-      'icon': ""
-    },
-    {
-      'id': 2,
-      'name': "pc 2",
-      'icon': ""
-    }
-  ]
-    return borrowedEquipments
+  getBorrowedEquipments(userId:Number): Observable<Equipment[]> {
+    return this.getAll()
   }
 
-  getReservedEquipments(userId:Number): Array<TestEquipment> {
-    const reservedEquipments: Array<TestEquipment> = [
-    {
-      'id': 3,
-      'name': "souris 1",
-      'icon': ""
-    },
-    {
-      'id': 4,
-      'name': "pc 3",
-      'icon': ""
+  getReservedEquipments(userId:Number): Observable<Equipment[]> {
+    return this.getAll()
+  }
+
+  getAllOfModelAvailableOnPeriod(startDate: Date, endDate: Date, modelId: Number): Observable<Equipment[]> {
+    const params = {
+      start:  startDate.toISOString(),
+      end: endDate.toISOString()
     }
-  ]
-    return reservedEquipments
+
+    return this.httpClient
+      .get<Equipment[]>(`http://localhost:8080/equipment/list-available-${modelId}`, { params })
+      .pipe(tap(availableEquipments => this.availableEquipmentsOfModel.set(availableEquipments)))
   }
 
   // -------------------------------------------------------------------
   // METHODES ADMIN
   // -------------------------------------------------------------------
 
-  
-  // getAllEquipments(userId:Number): Array<Equipment> {
-  //   let httpClient = inject(HttpClient)
-  //   const borrowedEquipments: Array<Equipment> = [
-  //       httpClient
-  //         .get<Equipment[]>("http://localhost:8080/equipment/list")
-  // ]
-  //   return borrowedEquipments
-  // }
-
-  getAllEquipments(): Array<TestEquipment> {
-    const equipments: Array<TestEquipment> = [
-    {
-      'id': 1,
-      'name': "pc 1",
-      'icon': ""
-    },
-    {
-      'id': 2,
-      'name': "pc 2",
-      'icon': ""
-    },
-    {
-      'id': 3,
-      'name': "souris 1",
-      'icon': ""
-    },
-    {
-      'id': 4,
-      'name': "pc 3",
-      'icon': ""
-    }
-  ]
-  return equipments
+  getAll(): Observable<Equipment[]> {
+    return this.httpClient
+      .get<Equipment[]>('http://localhost:8080/equipment/list')
+      .pipe(tap(allEquipments => this.allEquipments.set(allEquipments))) // met à jour accreditationList avant de return le reultat de la requête
   }
 }
