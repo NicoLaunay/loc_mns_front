@@ -1,0 +1,32 @@
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form > * {
+    margin-bottom: 1rem;
+}
+
+form .input-block {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+form .input-block textarea {
+    height: 10rem;
+}
+
+form .input-dates {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 50%;
+}
+form .input-dates .input-block {
+    width: 100%;
+}
