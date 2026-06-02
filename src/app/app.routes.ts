@@ -26,10 +26,10 @@ export const routes: Routes = [
     { path: 'equipment/:id', component: EquipmentDetail, title: 'LocNES - Fiche équipement', canActivate:[userGuard] },
     { path: 'equipment/:id/request', component: RequestForm, title: 'LocNES - Demande Gestionnaire', canActivate:[userGuard] },
     
-    { path: 'exemple', component: Exemple, title: 'exemple', },
-    { path: 'exemple-accreditation/update/:id', component: ExempleEditAccreditation, title: 'exemple edit accred', },
-    { path: 'exemple-accreditation/create', component: ExempleEditAccreditation, title: 'exemple edit accred',},
-    { path: 'exemple-detail-accreditation/:id', component: ExempleDetailAccreditation, title: 'exemple détails accred',},
+    // { path: 'exemple', component: Exemple, title: 'exemple', },
+    // { path: 'exemple-accreditation/update/:id', component: ExempleEditAccreditation, title: 'exemple edit accred', },
+    // { path: 'exemple-accreditation/create', component: ExempleEditAccreditation, title: 'exemple edit accred',},
+    // { path: 'exemple-detail-accreditation/:id', component: ExempleDetailAccreditation, title: 'exemple détails accred',},
     
     { path: '**', component: NotFound, title: 'Erreur 404', },
 ];
