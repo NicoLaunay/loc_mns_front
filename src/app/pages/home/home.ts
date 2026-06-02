@@ -1,9 +1,7 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { EquipmentCard } from '../../layouts/equipment-card/equipment-card';
 import { EquipmentService } from '../../services/equipment-service';
-import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
-import { Equipment } from '../../models/equipment';
 
 @Component({
   selector: 'home',
@@ -16,8 +14,8 @@ export class Home implements OnInit {
   // APPEL DU SERVICE EquipmentService
   private equipmentService = inject(EquipmentService)
 
-  protected borrowedEquipments = this.equipmentService.equipmentList
-  protected reservedEquipments = this.equipmentService.equipmentList
+  protected borrowedEquipments = this.equipmentService.allEquipments
+  protected reservedEquipments = this.equipmentService.allEquipments
 
 
   ngOnInit(): void {
