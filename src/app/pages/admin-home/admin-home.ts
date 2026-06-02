@@ -21,8 +21,7 @@ export class AdminHome {
   protected readonly dataClass = DataClass;
   protected readonly dataClassEntries = Object.entries(this.dataClass) as [String, DataClass][]
 
-  protected showedClass: DataClass = DataClass.EQUIPMENTS
-  protected showedClassName: String = this.getDataClassName(this.showedClass)
+  protected showedClass: DataClass = DataClass.EQUIPMENT
   protected showedClassCreateFormUrl: String = this.getCreateFormUrl(this.showedClass)
 
   private equipmentService = inject(EquipmentService)
@@ -38,18 +37,28 @@ export class AdminHome {
   }
 
   getCreateFormUrl(dataClass: DataClass): String {
-    let slugifiedClassName = this.utilService.slugify(this.getDataClassName(dataClass))
-    return `/new-${slugifiedClassName}`
-  }
+    const enumKey = Object.keys(DataClass).find(
+      key => DataClass[key as keyof typeof DataClass] === dataClass
+    );
 
-  getDataClassName(dataClass: DataClass): String {
-    return dataClass.valueOf().slice(0, -1)
+    if (enumKey) {
+      let slugifiedClassName = this.utilService.slugify(enumKey)
+      return `/edit-${slugifiedClassName}`
+
+    } else {
+      throw new Error("Catégorie inexistante");
+    }
   }
 
   showList(dataClass: DataClass): void {
-    this.showedClass = dataClass
-    this.showedClassName = this.getDataClassName(dataClass)
-    this.showedClassCreateFormUrl = this.getCreateFormUrl(dataClass)
+    try {
+      this.showedClass = dataClass
+      // this.showedClassName = this.getDataClassName(dataClass)
+      this.showedClassCreateFormUrl = this.getCreateFormUrl(dataClass)
+    } catch (error) {
+      
+    }
+    
   }
 
 }

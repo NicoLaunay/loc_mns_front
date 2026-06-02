@@ -6,7 +6,7 @@
         <div class="equipments">
             <ul class="data-class-menu">
                 @for (entry of dataClassEntries; track entry[0]) {
-                    <li><button [ngClass]="{'active': showedClass == entry[1]}" (click)="showList(entry[1])">{{ entry[1] }}</button></li>
+                    <li><button [ngClass]="{'active': showedClass == entry[1]}" (click)="showList(entry[1])">{{ entry[1] }}s</button></li>
                 }
             </ul>
 
@@ -15,33 +15,33 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M18 12.998h-5v5a1 1 0 0 1-2 0v-5H6a1 1 0 0 1 0-2h5v-5a1 1 0 0 1 2 0v5h5a1 1 0 0 1 0 2" />
                     </svg>
-                    Créer {{ showedClassName }}
+                    Créer {{ showedClass }}
                 </a>
                 @switch (showedClass) {
-                    @case (dataClass.EQUIPMENTS) {
+                    @case (dataClass.EQUIPMENT) {
                         @for (equipment of allEquipments(); track equipment) {
                             <admin-equipment-card [equipment]="equipment"></admin-equipment-card>
                         }
                     }
-                    @case (dataClass.MODELS) {
+                    @case (dataClass.MODEL) {
                         <!-- @for (model of allModels(); track model) {
                             <admin-equipment-card [equipment]="model"></admin-equipment-card>
                         } -->
                     }
-                    @case (dataClass.TYPES) {}
-                    @case (dataClass.DOCUMENTATIONS) {}
-                    @case (dataClass.USERS) {}
-                    @case (dataClass.ACCREDITATIONS) {}
-                    @case (dataClass.ROLES) {}
-                    @case (dataClass.LOCATIONS) {}
-                    @case (dataClass.STATES) {}
-                    @case (dataClass.MODIFICATIONS) {}
-                    @case (dataClass.LOANS) {
+                    @case (dataClass.TYPE) {}
+                    @case (dataClass.DOCUMENTATION) {}
+                    @case (dataClass.USER) {}
+                    @case (dataClass.ACCREDITATION) {}
+                    @case (dataClass.ROLE) {}
+                    @case (dataClass.LOCATION) {}
+                    @case (dataClass.STATE) {}
+                    @case (dataClass.MODIFICATION) {}
+                    @case (dataClass.LOAN) {
                         @for (loan of showedLoans(); track loan) {
                             <admin-loan-card [loan]="loan"></admin-loan-card>
                         }
                     }
-                    @case (dataClass.REQUESTS) {}
+                    @case (dataClass.REQUEST) {}
                 }
                 
             </div>
