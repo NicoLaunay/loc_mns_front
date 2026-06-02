@@ -1,7 +1,9 @@
+import { Equipment } from "./equipment"
+
 type Loan = {
     id: Number,
-    idUser: Number,
-    idEquipment: Number,
+    user: AppUser,
+    equipment: Equipment,
     startDate: Date,
     endDate: Date,
     returnDate: Date
