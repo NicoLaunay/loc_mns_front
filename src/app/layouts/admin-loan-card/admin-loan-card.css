@@ -1,0 +1,26 @@
+.line-card {
+    padding: 1rem;
+    border: 1px solid var(--color-darker);
+    border-radius: 0.5rem;
+    background-color: var(--color-lighter);
+    margin-bottom: 0.5rem;
+}
+.line-card:hover {
+    box-shadow: 0rem 0.2rem 0.5rem var(--color-dark);
+    /* background-color: var(--color-light); */
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+}
+
+.line-card-info {
+    margin-left: 1rem;
+}
+
+.line-card-info .status {
+    
+}
+
+

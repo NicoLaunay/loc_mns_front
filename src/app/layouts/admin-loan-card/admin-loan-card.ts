@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { Loan } from '../../models/loan';
 
 @Component({
   selector: 'admin-loan-card',
