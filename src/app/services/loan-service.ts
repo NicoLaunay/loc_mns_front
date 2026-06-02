@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Loan } from '../models/loan';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -22,13 +23,13 @@ export class LoanService {
 
   getAllByUserId(id: Number): Observable<Loan[]> {
     return this.httpClient
-      .get<Loan[]>(`http://localhost:8080/loan/user${id}`)
+      .get<Loan[]>(environment.serverUrl + `/loan/user${id}`)
       .pipe(tap(loans => this.showedLoans.set(loans)))
   }
 
   getAll(): Observable<Loan[]> {
     return this.httpClient
-      .get<Loan[]>('http://localhost:8080/loan/list')
+      .get<Loan[]>(environment.serverUrl + '/loan/list')
       .pipe(tap(allLoans => this.showedLoans.set(allLoans))) // met à jour accreditationList avant de return le reultat de la requête
 
   }

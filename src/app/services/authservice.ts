@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 type JwtInfo = {sub: string, role: string}
 
@@ -10,6 +12,7 @@ type JwtInfo = {sub: string, role: string}
 export class AuthService {
 
   httpClient = inject(HttpClient)
+  router = inject(Router)
   readonly jwtInfo = signal<JwtInfo | null>(null)
 
   constructor() {
@@ -18,7 +21,7 @@ export class AuthService {
 
   login(credentials: { email: String, password: String }) {
     return this.httpClient.post(
-      'http://localhost:8080/login',
+      environment.serverUrl + '/login',
       credentials,
       {responseType: 'text'
     })
@@ -44,7 +47,8 @@ export class AuthService {
 
   logout() {
     this.jwtInfo.set(null)
-    localStorage.removeItem("jwt")   
+    localStorage.removeItem("jwt")
+    this.router.navigate(["/login"])
   }
 
 }

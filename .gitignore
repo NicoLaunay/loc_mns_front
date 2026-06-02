@@ -39,6 +39,12 @@ testem.log
 /typings
 __screenshots__/
 
+src/material-theme-demo.scss
+src/app/app-demo.html
+src/app/pages/exemple
+src/app/pages/exemple-detail-accreditation
+src/app/pages/exemple-edit-accreditation
+
 # System files
 .DS_Store
 Thumbs.db

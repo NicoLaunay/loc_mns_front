@@ -7,6 +7,7 @@ import { TypeService } from '../../services/type-service';
 import { EquipmentService } from '../../services/equipment-service';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { combineLatest, filter, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'edit-loan-form',
@@ -52,7 +53,7 @@ export class EditLoanForm {
           
         } else {
           this.httpClient
-              .get<Loan>('http://localhost:8080/loan/' + id)
+              .get<Loan>(environment.serverUrl + '/loan/' + id)
               .subscribe(loan => this.loan.set(loan))
         }
       }

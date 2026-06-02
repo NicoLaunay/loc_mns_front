@@ -2,6 +2,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { TestEquipment, Equipment, EquipmentWithLoans } from '../models/equipment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -33,7 +34,7 @@ export class EquipmentService {
     }
 
     return this.httpClient
-      .get<Equipment[]>(`http://localhost:8080/equipment/list-available-${modelId}`, { params })
+      .get<Equipment[]>(environment.serverUrl + `/equipment/list-available-${modelId}`, { params })
       .pipe(tap(availableEquipments => this.availableEquipmentsOfModel.set(availableEquipments)))
   }
 
@@ -43,7 +44,7 @@ export class EquipmentService {
 
   getAll(): Observable<Equipment[]> {
     return this.httpClient
-      .get<Equipment[]>('http://localhost:8080/equipment/list')
+      .get<Equipment[]>(environment.serverUrl + '/equipment/list')
       .pipe(tap(allEquipments => this.allEquipments.set(allEquipments))) // met à jour accreditationList avant de return le reultat de la requête
   }
 }

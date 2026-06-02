@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Model } from '../models/model';
 import { Observable, tap } from 'rxjs';
 import { Type } from '../models/type';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -14,13 +15,13 @@ export class TypeService {
 
   getAll(): Observable<Type[]> {
     return this.httpClient
-      .get<Type[]>('http://localhost:8080/type/list')
+      .get<Type[]>(environment.serverUrl + '/type/list')
       .pipe(tap(types => this.allTypes.set(types)))
   }
 
   getEquipmentTypes(): Observable<Type[]> {
     return this.httpClient
-      .get<Type[]>('http://localhost:8080/type/list')
+      .get<Type[]>(environment.serverUrl + '/type/list')
       .pipe(tap(types => this.allTypes.set(types)))
   }
 }
