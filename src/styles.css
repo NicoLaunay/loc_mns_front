@@ -95,9 +95,9 @@ main {
 
 
 /* Gestion de l'apparence des notifications */
-/* .mdc-snackbar {
+.mdc-snackbar {
   &.valid .mat-mdc-snackbar-surface {
-    background-color: green;
+    background-color: rgb(0, 182, 0);
   }
   &.info .mat-mdc-snackbar-surface {
     background-color: blue;
@@ -108,7 +108,7 @@ main {
   &.error .mat-mdc-snackbar-surface {
     background-color: red;
   }
-} */
+}
 /* .pop-up {
   &.valid .mat-mdc-snackbar-surface {
     background-color: green;
@@ -171,7 +171,9 @@ form {
     }
   }
 
-  .form-button {
+  .form-buttons {
+    display: flex;
+    gap: 2rem;
     align-items: center;
   }
 }

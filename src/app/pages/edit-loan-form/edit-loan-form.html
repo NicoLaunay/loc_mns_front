@@ -4,7 +4,7 @@
     <form type="POST" action="submit" [formGroup] = "form">
 
         <!-- Menu Type -->
-        <div class="input-block">
+        <div class="form-field">
             <label for="type">Type</label>
             <select formControlName="type" class="dropdown-menu" name="type" id="type" (change)="onTypeChange($event)">
                 @for (type of equipmentTypes(); track $index) {
@@ -14,7 +14,7 @@
         </div>
 
         <!-- Menu Modèle -->
-        <div class="input-block">
+        <div class="form-field">
             <label for="model">Modèle</label>
             <select formControlName="model" class="dropdown-menu" name="model" id="model" (change)="onLoanDetailsChange()">
                 @for (model of modelsOfType(); track $index) {
@@ -25,11 +25,11 @@
 
         <!-- Sélecteur Dates -->
         <div class="input-dates">
-            <div class="input-block">
+            <div class="form-field">
                 <label for="startDate">Date de début</label>
                 <input type="date" name="startDate" id="startDate" formControlName="startDate" (change)="onLoanDetailsChange()">
             </div>
-            <div class="input-block">
+            <div class="form-field">
                 <label for="endDate">Date de fin</label>
                 <input type="date" name="endDate" id="endDate" formControlName="endDate" (change)="onLoanDetailsChange()">
             </div>
@@ -39,16 +39,19 @@
             <div>{{ nbAvailable() }} exemplaires disponibles aux dates indiquées</div>
         <!-- } -->
         
-        <div class="input-block">
+        <div class="form-field">
             <label for="amount">Quantité</label>
             <input type="number" name="amount" id="amount">
         </div>
         
-        <a class="link-button-primary" href="" type="submit">
-            Réserver
-        </a>
-        <a class="link-button-secondary" [routerLink]="['/']">
-            Annuler
-        </a>
+        <div class="form-buttons">
+            <a class="link-button-primary" href="" type="submit">
+                Réserver
+            </a>
+            <a class="link-button-secondary" [routerLink]="['/']">
+                Annuler
+            </a>
+        </div>
+        
     </form>
 </div>
