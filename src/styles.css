@@ -30,28 +30,6 @@ header .navbar {
     align-items: flex-end;
 }
 
-header .nav-menu {
-    display: flex;
-    flex-direction: row;
-    padding-left: 0;
-    list-style: none;
-}
-
-header .nav-menu > li {
-    display: block;
-    margin-right: 1.6rem;
-    
-}
-
-header .nav-menu > li > a {
-    text-decoration: none;
-    color: var(--color-light);
-}
-header .nav-menu > li > a:hover {
-    text-decoration: none;
-    color: var(--color-accent);
-}
-
 header .burger {
   color: var(--color-light);
 }
@@ -62,7 +40,12 @@ main {
 }
 
 .container {
-  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 2rem;
 }
 
 .link-button-primary {
@@ -110,22 +93,9 @@ main {
   fill: var(--color-lighter);
 }
 
-form label {
-  margin-bottom: 0.4rem;
-  color: var(--color-dark);
-}
-
-form input, select, textarea {
-  /* height: 2rem; */
-  padding: 0.6rem;
-  border: 0px solid var(--color-dark);
-  border-radius: 4px;
-  font-weight: bold;
-  color: var(--color-dark);
-}
 
 /* Gestion de l'apparence des notifications */
-.mdc-snackbar {
+/* .mdc-snackbar {
   &.valid .mat-mdc-snackbar-surface {
     background-color: green;
   }
@@ -138,14 +108,33 @@ form input, select, textarea {
   &.error .mat-mdc-snackbar-surface {
     background-color: red;
   }
-}
+} */
+/* .pop-up {
+  &.valid .mat-mdc-snackbar-surface {
+    background-color: green;
+  }
+  &.info .mat-mdc-snackbar-surface {
+    background-color: blue;
+  }
+  &.warning .mat-mdc-snackbar-surface {
+    background-color: orange;
+  }
+  &.error {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--color-accent);
+  }
+} */
 
-.formulaire {
+
+/* FORMULAIRES */
+form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  min-width: 300px;
-  max-width: 1000px;
+  gap: 2rem;
+  align-items: center;
+  min-width: 250px;
+  max-width: 500px;
   width: 100%;
   margin: 1em;
 
@@ -153,5 +142,41 @@ form input, select, textarea {
     width: fit-content;
     min-width: 200px;
   }
+
+  .form-field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    
+    label {
+      margin-bottom: 0.4rem;
+      color: var(--color-dark);
+    }
+
+    input, select, textarea {
+      /* height: 2rem; */
+      padding: 0.6rem;
+      border: 0px solid var(--color-dark);
+      border-radius: 4px;
+      font-weight: bold;
+      color: var(--color-dark);
+    }
+
+    .error {
+      margin-top: 0.2rem;
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--color-accent);
+    }
+  }
+
+  .form-button {
+    align-items: center;
+  }
 }
 
+
+@media (max-width: 768px) {
+  
+}
