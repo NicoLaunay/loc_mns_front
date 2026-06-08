@@ -3,10 +3,11 @@ import { RouterLink, RouterLinkActive, RouterLinkWithHref, RouterOutlet } from '
 import { RouterModule } from '@angular/router';
 import { AccreditationService } from './services/accreditation';
 import { AuthService } from './services/authservice';
+import { MenuBurger } from './layouts/menu-burger/menu-burger';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, RouterModule, MenuBurger],
   templateUrl: './app.html',
   styleUrl: './app.css'
   
@@ -23,7 +24,4 @@ export class App {
     this.accreditationService.getAll()
   }
 
-  logout() {
-    this.authService.logout()
-  }
 }
