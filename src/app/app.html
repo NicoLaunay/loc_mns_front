@@ -8,14 +8,16 @@
 
             <!-- Menu de navigation -->
             <ul class="nav-menu">
-                    <li><a class="active" [routerLink]="['/home']">Accueil</a></li>
+                    <!-- <li><a class="active" [routerLink]="['/home']">Accueil</a></li>
 
                 @if(!authService.jwtInfo()) {
                     <li><a routerLink="/login">Connexion</a></li>
                 } @else {
                     <li><a routerLink="#">Mon Compte</a></li>
                     <li><a routerLink="#" (click)="logout()">Déconnexion</a></li>
-                }
+                } -->
+
+                <menu-burger></menu-burger>
 
             </ul>
         </nav>
