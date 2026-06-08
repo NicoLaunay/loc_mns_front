@@ -16,6 +16,7 @@ import { adminGuard } from './guards/admin-guard';
 import { homeGuard } from './guards/home-guard';
 
 export const routes: Routes = [
+    { path: '', component: Home, title: 'LocNES - Accueil', canActivate:[userGuard, homeGuard] },
     { path: 'home', component: Home, title: 'LocNES - Accueil', canActivate:[userGuard, homeGuard] },
     { path: 'home-admin', component: AdminHome, title: 'LocNES - Accueil Admin', canActivate:[adminGuard] },
     { path: 'login', component: Login, title: 'LocNES - Login' },
