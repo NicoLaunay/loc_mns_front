@@ -1,8 +1,7 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { AuthService } from '../../services/authservice';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
-import { JsonPipe } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -50,10 +49,8 @@ export class MenuBurger {
   }
 
   logout() {
-    console.log("avant : " + this.currentUrl);
-    this.isOnLoginPage
+    this.isOnLoginPage()
     this.closeMenu()
     this.authService.logout()
-    console.log("après : " + this.currentUrl);
   }
 }
