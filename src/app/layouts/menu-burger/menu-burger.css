@@ -1,0 +1,65 @@
+.burger {
+    display: block;
+    border: none;
+    background: none;
+}
+.burger svg {
+    color: var(--color-light);
+    height: 2rem;
+    width: 2rem;
+}
+
+.nav-links {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    padding: 1rem;
+    background: white;
+}
+
+.nav-links > li > a {
+    text-decoration: none;
+    color: var(--color-dark);
+}
+
+.nav-links.open {
+    display: flex;
+    gap: 1rem;
+}
+
+
+@media (min-width: 768px) {
+    .burger {
+        display: none;
+        border: none;
+        background: none;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        gap: 1rem;
+        padding-left: 0;
+        list-style: none;
+        background: none;
+    }
+
+    .nav-links > li {
+        display: block;
+        margin-right: 1.6rem;
+    }
+
+    .nav-links > li > a {
+        color: var(--color-light);
+    }
+
+    .nav-links > li > a:hover {
+        color: var(--color-accent);
+    }
+}
