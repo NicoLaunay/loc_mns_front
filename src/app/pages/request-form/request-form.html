@@ -1,21 +1,24 @@
 <div class="container">
     <h1>Demande Gestionnaire</h1>
     <form action="POST" action="/submit">
-        <div class="input-block">
+        <div class="form-field">
             <label for="title">Objet</label>
             <input name="title" id="title" type="text">
         </div>
 
-        <div class="input-block">
+        <div class="form-field">
             <label for="content">Contenu</label>
             <textarea name="content" id="content"></textarea>
         </div>
         
-        <a class="link-button-primary" href="">
+        <div class="form-buttons">
+            <a class="link-button-primary" href="">
             Envoyer
         </a>
         <a class="link-button-secondary" [routerLink]="['/home']">
             Annuler
         </a>
+        </div>
+        
     </form>
 </div>

@@ -14,14 +14,19 @@ import { NewModelForm } from './pages/new-model-form/new-model-form';
 import { userGuard } from './guards/user-guard';
 import { adminGuard } from './guards/admin-guard';
 import { homeGuard } from './guards/home-guard';
+import { EditLoanValidation } from './pages/edit-loan-validation/edit-loan-validation';
 
 export const routes: Routes = [
     { path: '', component: Home, title: 'LocNES - Accueil', canActivate:[userGuard, homeGuard] },
     { path: 'home', component: Home, title: 'LocNES - Accueil', canActivate:[userGuard, homeGuard] },
     { path: 'home-admin', component: AdminHome, title: 'LocNES - Accueil Admin', canActivate:[adminGuard] },
     { path: 'login', component: Login, title: 'LocNES - Login' },
+    
+    { path: 'edit-loan/validation', component: EditLoanValidation, title: 'LocNES - Nouvelle Réservation', canActivate:[userGuard] },
+    { path: 'edit-loan/:id/validation', component: EditLoanValidation, title: 'LocNES - Nouvelle Réservation', canActivate:[userGuard] },
     { path: 'edit-loan', component: EditLoanForm, title: 'LocNES - Nouvelle Réservation', canActivate:[userGuard] },
     { path: 'edit-loan/:id', component: EditLoanForm, title: 'LocNES - Nouvelle Réservation', canActivate:[userGuard] },
+    
     { path: 'edit-type', component: NewTypeForm, title: 'LocNES - Nouveau Type', canActivate:[adminGuard] },
     { path: 'edit-modele', component: NewModelForm, title: 'LocNES - Nouveau Modèle', canActivate:[adminGuard] },
     { path: 'equipment/:id', component: EquipmentDetail, title: 'LocNES - Fiche équipement', canActivate:[userGuard] },

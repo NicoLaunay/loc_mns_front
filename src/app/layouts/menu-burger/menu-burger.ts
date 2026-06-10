@@ -49,7 +49,7 @@ export class MenuBurger {
   }
 
   logout() {
-    this.isOnLoginPage()
+    // this.isOnLoginPage()
     this.closeMenu()
     this.authService.logout()
   }

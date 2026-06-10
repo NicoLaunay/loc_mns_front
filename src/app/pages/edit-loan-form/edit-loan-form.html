@@ -1,7 +1,7 @@
 <div class="container">
     <h1>Réserver équipement</h1>
 
-    <form type="POST" action="submit" [formGroup] = "form">
+    <form class="formulaire"  [formGroup] = "form">
 
         <!-- Menu Type -->
         <div class="form-field">
@@ -28,10 +28,20 @@
             <div class="form-field">
                 <label for="startDate">Date de début</label>
                 <input type="date" name="startDate" id="startDate" formControlName="startDate" (change)="onLoanDetailsChange()">
+                @if (form.get('startDate')?.touched) {
+                    @if (form.get('startDate')?.hasError('required')) {
+                        <div class="field-warning">Le champ est obligatoire</div>
+                    }
+                }
             </div>
             <div class="form-field">
                 <label for="endDate">Date de fin</label>
                 <input type="date" name="endDate" id="endDate" formControlName="endDate" (change)="onLoanDetailsChange()">
+                @if (form.get('endDate')?.touched) {
+                    @if (form.get('endDate')?.hasError('required')) {
+                        <div class="field-warning">Le champ est obligatoire</div>
+                    }
+                }
             </div>
         </div>
 
@@ -41,13 +51,16 @@
         
         <div class="form-field">
             <label for="amount">Quantité</label>
-            <input type="number" name="amount" id="amount">
+            <input type="number" min="1" name="amount" id="amount" formControlName="amount" (change)="onAmountChange($event)">
+            @if (!isEnoughAvailable) {
+                <div class="field-warning">stock insuffisant aux dates demandées</div>
+            }
         </div>
         
         <div class="form-buttons">
-            <a class="link-button-primary" href="" type="submit">
+            <button class="link-button-primary" type="button" (click)="onValidation()">
                 Réserver
-            </a>
+            </button>
             <a class="link-button-secondary" [routerLink]="['/']">
                 Annuler
             </a>

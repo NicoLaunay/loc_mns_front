@@ -5,6 +5,7 @@
     --color-accent: #ff5d2dff;
     --color-light: rgb(196, 196, 196);
     --color-lighter: rgb(230, 230, 230);
+    --color-warning: rgb(200, 0, 0);
 }
 
 html {
@@ -162,8 +163,14 @@ form {
       font-weight: bold;
       color: var(--color-dark);
     }
+    input.error {
+      color: var(--color-warning);
+    }
+    textarea {
+      height: 10rem;
+    }
 
-    .error {
+    .field-warning {
       margin-top: 0.2rem;
       font-size: 0.8rem;
       font-style: italic;

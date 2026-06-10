@@ -6,6 +6,7 @@ import { NotificationService } from '../../services/notification';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../services/authservice';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'login',
@@ -19,6 +20,7 @@ export class Login {
   httpClient = inject(HttpClient) // injection du client pour pouvoir faire la requête
   notification = inject(NotificationService)
   authService = inject(AuthService)
+  userService = inject(UserService)
   router = inject(Router)
 
   formulaire = this.formBuilder.group({

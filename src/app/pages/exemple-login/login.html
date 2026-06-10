@@ -6,10 +6,10 @@
 
             @if (formulaire.get('email')?.touched) {
                 @if(formulaire.get('email')?.hasError('email')) {
-                    <div class="error">Doit être une adresse mail</div> <!-- les mat-errors ne s'affichent de toute façon que si le champ est en erreur, sinon il sont invisibles. le @if sert juste à choisir le quel est le bon -->
+                    <div class="field-warning">Doit être une adresse mail</div> <!-- les mat-errors ne s'affichent de toute façon que si le champ est en erreur, sinon il sont invisibles. le @if sert juste à choisir le quel est le bon -->
                 }
                 @if (formulaire.get('email')?.hasError('required')) {
-                    <div class="error">Le champ est obligatoire</div>
+                    <div class="field-warning">Le champ est obligatoire</div>
                 }
             }
         </div>
@@ -20,7 +20,7 @@
 
             @if (formulaire.get('password')?.touched) {
                 @if (formulaire.get('password')?.hasError('required')) {
-                    <div class="error">Le champ est obligatoire</div>
+                    <div class="field-warning">Le champ est obligatoire</div>
                 }
             }
         </div>
