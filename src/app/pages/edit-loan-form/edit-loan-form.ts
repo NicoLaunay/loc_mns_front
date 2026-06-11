@@ -112,9 +112,14 @@ export class EditLoanForm {
   onValidation(): void {
     if (this.form.valid) {
 
+      // TEMPORAIRE
+      this.authService.getConnectedUser()
+
       const user = this.authService.connectedUser()
       const startDate = this.form.controls.startDate.value
       const endDate = this.form.controls.endDate.value
+
+      console.log(user, startDate, endDate)
       
       if (!user || !startDate || !endDate) {
         this.notification.open('Formulaire incomplet', 'error')

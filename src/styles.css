@@ -110,7 +110,7 @@ main {
     background-color: red;
   }
 }
-/* .pop-up {
+.pop-up {
   &.valid .mat-mdc-snackbar-surface {
     background-color: green;
   }
@@ -120,12 +120,13 @@ main {
   &.warning .mat-mdc-snackbar-surface {
     background-color: orange;
   }
-  &.error {
+  &.error .mat-mdc-snackbar-surface {
     font-size: 0.8rem;
     font-style: italic;
-    color: var(--color-accent);
+    /* color: var(--color-accent); */
+    background-color: red;
   }
-} */
+}
 
 
 /* FORMULAIRES */
