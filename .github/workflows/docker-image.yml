@@ -8,28 +8,56 @@ on:
 
 jobs:
 
-  build:
-
+  docker-push:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build -t nicol49/demo-devops-loc_mns_front .
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: extract version from package.json
-      run: echo "VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: TAG the Docker image
-      run: docker tag nicol49/demo-devops-loc_mns_front nicol49/demo-devops-loc_mns_front:${{ env.VERSION }}
+      - name: Build image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/locnes-front:${{ github.sha }} .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/locnes-front:latest .
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v4
-      with:
-        username: nicol49
-        password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push image
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/locnes-front:${{ github.sha }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/locnes-front:latest
+  
+  deploy:
+    runs-on: self-hosted
+    needs: docker-push
 
-    - name: Push Docker images
-      run: |
-        docker push nicol49/demo-devops-loc_mns_front 
-        docker push nicol49/demo-devops-loc_mns_front:${{ env.VERSION }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy docker-compose
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: docker-compose.yml
+          remote: /opt/locnes/docker-compose.yml
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          privateKey: ${{ secrets.SERVER_SSH_KEY }}
+
+      - name: Deploy on server
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          privateKey: ${{ secrets.SERVER_SSH_KEY }}
+          command: |
+            echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/locnes-front:${{ github.sha }}
+            docker stop locnes-front || true
+            docker rm locnes-front || true
+            cd /opt/locnes
+            docker compose up -d
