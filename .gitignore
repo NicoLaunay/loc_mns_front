@@ -48,3 +48,6 @@ src/app/pages/exemple-edit-accreditation
 # System files
 .DS_Store
 Thumbs.db
+
+
+*.old
