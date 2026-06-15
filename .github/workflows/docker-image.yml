@@ -39,15 +39,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Copy docker-compose
-        uses: garygrossgarten/github-action-scp@release
-        with:
-          local: docker-compose.yml
-          remote: /opt/locnes/docker-compose.yml
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          privateKey: ${{ secrets.SERVER_SSH_KEY }}
-
       - name: Deploy on server
         uses: garygrossgarten/github-action-scp@release
         with:
