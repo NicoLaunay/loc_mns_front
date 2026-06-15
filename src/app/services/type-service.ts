@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { Model } from '../models/model';
 import { Observable, tap } from 'rxjs';
-import { Type } from '../models/type';
+import { ApiType, mapTypeWithIcon, Type } from '../models/type.model';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -12,16 +11,29 @@ export class TypeService {
   httpClient = inject(HttpClient)
 
   readonly allTypes = signal<Type[]>([])
-
-  getAll(): Observable<Type[]> {
-    return this.httpClient
-      .get<Type[]>(environment.serverUrl + '/type/list')
-      .pipe(tap(types => this.allTypes.set(types)))
+  readonly borrowableTypes = signal<Type[]>([])
+  readonly typeIcons: Record<number | "default", string> = {
+    default: "",
+    1: ""
   }
 
-  getEquipmentTypes(): Observable<Type[]> {
-    return this.httpClient
-      .get<Type[]>(environment.serverUrl + '/type/list')
-      .pipe(tap(types => this.allTypes.set(types)))
+  getAll(): void {
+    this.httpClient
+      .get<ApiType[]>(environment.serverUrl + '/type/list')
+      .pipe(tap(types => this.allTypes.set(types.map(mapTypeWithIcon))))
+  }
+
+  getEquipmentTypes(): void {
+    this.httpClient
+      .get<ApiType[]>(environment.serverUrl + '/type/list')
+      .pipe(tap(types => this.allTypes.set(types.map(mapTypeWithIcon))))
+  }
+
+  getBorrowableTypes(): void {
+    this.httpClient
+      .get<ApiType[]>(environment.serverUrl + '/type/borrowable')
+      .pipe(tap(types => this.borrowableTypes.set(
+        types.map(mapTypeWithIcon)
+      )))
   }
 }

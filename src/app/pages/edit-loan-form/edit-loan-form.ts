@@ -6,13 +6,11 @@ import { ModelService } from '../../services/model-service';
 import { TypeService } from '../../services/type-service';
 import { EquipmentService } from '../../services/equipment-service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { combineLatest, filter, Observable } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { LoanService } from '../../services/loan-service';
-import { Equipment } from '../../models/equipment';
-import { UserService } from '../../services/user-service';
 import { Model } from '../../models/model';
-import { Type } from '../../models/type';
+import { Type } from '../../models/type.model';
 import { NotificationService } from '../../services/notification';
 import { AuthService } from '../../services/authservice';
 
@@ -36,7 +34,7 @@ export class EditLoanForm {
   equipmentService = inject(EquipmentService)
   loanService = inject(LoanService)
 
-  readonly equipmentTypes = this.typeService.allTypes
+  readonly borrowableTypes = this.typeService.borrowableTypes
   readonly modelsOfType = this.modelService.allOfType
   readonly availableOfSelectedModel = this.equipmentService.availableEquipmentsOfModel
   readonly nbAvailable = this.equipmentService.nbAvailableOfModel
@@ -57,7 +55,7 @@ export class EditLoanForm {
 
 
   ngOnInit() {
-    this.typeService.getAll().subscribe()
+    this.typeService.getBorrowableTypes()
 
     this.onLoanDetailsChange()
 

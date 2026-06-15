@@ -7,7 +7,7 @@
         <div class="form-field">
             <label for="type">Type</label>
             <select formControlName="type" class="dropdown-menu" name="type" id="type" (change)="onTypeChange($event)">
-                @for (type of equipmentTypes(); track $index) {
+                @for (type of borrowableTypes(); track $index) {
                     <option value="{{type?.id}}">{{ type?.name }}</option>
                 }
             </select>
