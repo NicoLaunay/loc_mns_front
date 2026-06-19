@@ -22,6 +22,7 @@ export class EditLoanValidation {
   notification = inject(NotificationService)
   loanService = inject(LoanService)
   authService = inject(AuthService)
+  userService = inject(UserService)
 
   readonly newLoans = this.loanService.newLoans
   readonly connectedUser = this.authService.connectedUser
@@ -32,6 +33,7 @@ export class EditLoanValidation {
         .post<Loan[]>(`${environment.serverUrl}/loan`, loan)
         .subscribe()
     }
+    this.authService.getConnectedUser()
     this.notification.open('Nouveaux prêts validés', 'valid')
     this.router.navigateByUrl('/edit-loan')
   }

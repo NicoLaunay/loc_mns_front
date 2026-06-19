@@ -1,17 +1,22 @@
 import { Equipment } from "./equipment"
 
-type Loan = {
+export interface LoanWithoutUser {
     id: Number | null,
-    user: AppUser,
     equipment: Equipment,
     startDate: Date,
     endDate: Date,
     returnDate: Date | null
 }
 
-type NewLoan = {
+export interface Loan extends LoanWithoutUser {
+    user: AppUser
+}
+
+export interface NewLoan {
     user: AppUser,
     equipment: Equipment,
     startDate: Date,
     endDate: Date,
 }
+
+

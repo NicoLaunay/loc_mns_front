@@ -1,6 +1,6 @@
 <div class="container">
     @for (loan of newLoans(); track $index) {
-        <equipment-card [equipment] = loan.equipment></equipment-card>
+        <equipment-card [loan] = loan></equipment-card>
     }
 
     <div>

@@ -1,7 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { EquipmentCard } from '../../layouts/equipment-card/equipment-card';
-import { EquipmentService } from '../../services/equipment-service';
 import { RouterLink } from '@angular/router';
+import { LoanService } from '../../services/loan-service';
+import { UserService } from '../../services/user-service';
+import { AuthService } from '../../services/authservice';
 
 @Component({
   selector: 'home',
@@ -11,18 +13,19 @@ import { RouterLink } from '@angular/router';
 })
 export class Home implements OnInit {
 
-  // APPEL DU SERVICE EquipmentService
-  private equipmentService = inject(EquipmentService)
+  private authService = inject(AuthService)
+  private loanService = inject(LoanService)
 
-  protected borrowedEquipments = this.equipmentService.allEquipments
-  protected reservedEquipments = this.equipmentService.allEquipments
+  protected user = this.authService.connectedUser
+
+  protected ongoingLoans = this.loanService.userOngoingLoans
+  protected plannedLoans = this.loanService.userPlannedLoans
+  protected pastLoans = this.loanService.userPastLoans
 
 
   ngOnInit(): void {
-
-    this.equipmentService.getBorrowedEquipments(0).subscribe();
-    this.equipmentService.getReservedEquipments(0).subscribe();
-
+    this.authService.getConnectedUser()
+    // this.loanService.loadConnectedUserLoans()
   }
 
 }

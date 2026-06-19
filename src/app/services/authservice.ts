@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs';
+import { firstValueFrom, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { AppUser, AppUserWithLoans } from '../models/app-user';
+import { UserService } from './user-service';
 
 type JwtInfo = {email: string, role: string}
 
@@ -13,14 +15,33 @@ export class AuthService {
 
   httpClient = inject(HttpClient)
   router = inject(Router)
+  userService = inject(UserService)
 
-  connectedUserEmail = signal<String | null>(null)
-  connectedUser = signal<AppUser | null>(null)
+  private connectedUserEmail = signal<String | null>(null)
+  readonly connectedUser = signal<AppUserWithLoans|null>(null)
 
   readonly jwtInfo = signal<JwtInfo | null>(null)
 
   constructor() {
     this.decodeJwt()
+  }
+
+  async getConnectedUser() {
+
+    if (!this.jwtInfo()?.email) {
+      console.log("erreur attribution user");
+      throw new Error('Utilisateur non connecté : aucun JWT valide.')
+    }
+
+    const user = await firstValueFrom(this.httpClient
+      .get<AppUserWithLoans>(environment.serverUrl + `/user/me`))
+
+      this.connectedUser.set(user)
+
+
+      console.log('connected user out: ')
+      console.log(this.connectedUser())
+      
   }
 
   login(credentials: { email: String, password: String }) {
@@ -58,26 +79,6 @@ export class AuthService {
     this.connectedUser.set(null)
     localStorage.removeItem("jwt")
     this.router.navigate(["/login"])
-  }
-
-  getConnectedUser(): void {
-
-    if (!this.jwtInfo()?.email) {
-      console.log("erreur attribution user");
-      
-      throw new Error('Utilisateur non connecté : aucun JWT valide.')
-    }
-
-    // Try catch à mettre ?
-    this.httpClient
-      .get<AppUser>(environment.serverUrl + `/user/me`)
-      .pipe(tap(connectedUser => {
-
-        console.log(connectedUser);
-        
-        this.connectedUser.set(connectedUser)
-      }))
-      .subscribe()
   }
 
 }

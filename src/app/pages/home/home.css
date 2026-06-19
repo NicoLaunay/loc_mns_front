@@ -9,6 +9,10 @@
     font-weight: bolder;
 }
 
+.page-content {
+    width: 100%;
+}
+
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);

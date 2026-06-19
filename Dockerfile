@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
-RUN npx ng build --configuration production
+RUN npm run build
 
 # Container qui sert de vrai serveur (récupère le contenu du 1er)
 FROM nginx:1.31-alpine

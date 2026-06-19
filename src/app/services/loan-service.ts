@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { Loan } from '../models/loan';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
+import { map, Observable, tap } from 'rxjs';
+import { Loan, LoanWithoutUser } from '../models/loan';
 import { environment } from '../../environments/environment';
 import { Equipment } from '../models/equipment';
 import { UserService } from './user-service';
 import { AuthService } from './authservice';
+import { AppUser } from '../models/app-user';
+import { mapLoanListDates } from '../models/loan.mapper';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +15,25 @@ import { AuthService } from './authservice';
 export class LoanService {
   httpClient = inject(HttpClient)
   authService = inject(AuthService)
+  userService = inject(UserService)
 
   readonly allLoans = signal<Loan[]>([])
-  readonly showedLoans = signal<Loan[]>([])
+  readonly showedLoans = signal<LoanWithoutUser[]>([])
+
+  readonly userLoans = signal<LoanWithoutUser[]>([])
+  readonly userOngoingLoans = computed<LoanWithoutUser[]>(() => 
+    this.userLoans().filter(loan => 
+      !loan.returnDate && 
+      loan.startDate.getTime() < Date.now()
+    ))
+  readonly userPlannedLoans = computed<LoanWithoutUser[]>(() =>
+    this.userLoans().filter(loan => 
+      loan.startDate.getTime() > Date.now()
+    ))
+  readonly userPastLoans = computed<LoanWithoutUser[]>(() => 
+    this.userLoans().filter(loan => 
+      loan.returnDate
+    ))
 
   readonly connectedUser = this.authService.connectedUser
   
@@ -25,19 +43,57 @@ export class LoanService {
 
   newLoans = signal<Loan[]>([])
 
+  constructor() {
+    effect(() => {
+      const user = this.connectedUser()
+      if (user) {
+        this.getAllByUserId(user.id).subscribe(loans => this.userLoans.set(loans))
+      } else {
+        this.userLoans.set([])
+      }
+    })
+  }
+
   // -------------------------------------------------------------------
   // METHODES COMMUNES
   // -------------------------------------------------------------------
 
+  //DEVENU OBSOLETE SAUF CAS PARTICULIER
+  loadConnectedUserLoans(): void {
+    const user = this.authService.connectedUser()
+    if (!user) {
+      throw new Error('Aucun utilisateur connecté')
+    }
+    this.getAllByUserId(user.id).subscribe(loans =>
+      this.userLoans.set(loans))
+  }
 
   // -------------------------------------------------------------------
   // METHODES ADMIN
   // -------------------------------------------------------------------
 
-  getAllByUserId(id: Number): Observable<Loan[]> {
+  getAllByUserId(id: Number): Observable<LoanWithoutUser[]> {
     return this.httpClient
-      .get<Loan[]>(environment.serverUrl + `/loan/user${id}`)
-      .pipe(tap(loans => this.showedLoans.set(loans)))
+      .get<LoanWithoutUser[]>(environment.serverUrl + `/loan/user${id}`)
+      .pipe(map(loans => mapLoanListDates(loans)))
+  }
+
+  getOngoingByUserId(id: Number): Observable<Loan[]> {
+    return this.httpClient
+      .get<Loan[]>(environment.serverUrl + `/loan/user${id}/ongoing`)
+      // .pipe(tap(loans => this.userOngoingLoans.set(loans)))
+  }
+
+  getPlannedyUserId(id: Number): Observable<Loan[]> {
+    return this.httpClient
+      .get<Loan[]>(environment.serverUrl + `/loan/user${id}/planned`)
+      // .pipe(tap(loans => this.userPlannedLoans.set(loans)))
+  }
+
+  getPastyUserId(id: Number): Observable<Loan[]> {
+    return this.httpClient
+      .get<Loan[]>(environment.serverUrl + `/loan/user${id}/past`)
+      // .pipe(tap(loans => this.userPastLoans.set(loans)))
   }
 
   getAll(): Observable<Loan[]> {

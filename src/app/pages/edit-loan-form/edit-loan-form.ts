@@ -13,6 +13,7 @@ import { Model } from '../../models/model';
 import { Type } from '../../models/type.model';
 import { NotificationService } from '../../services/notification';
 import { AuthService } from '../../services/authservice';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'edit-loan-form',
@@ -33,6 +34,7 @@ export class EditLoanForm {
   authService = inject(AuthService)
   equipmentService = inject(EquipmentService)
   loanService = inject(LoanService)
+  userService = inject(UserService)
 
   readonly borrowableTypes = this.typeService.borrowableTypes
   readonly modelsOfType = this.modelService.allOfType

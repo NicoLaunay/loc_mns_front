@@ -1,4 +1,4 @@
-type AppUser = {
+export interface AppUser {
     id: number;
     name: string;
     surname: string;
@@ -9,6 +9,6 @@ type AppUser = {
     avatarUrl: string;
 }
 
-type AppUserWithLoans = AppUser & {
+export interface AppUserWithLoans extends AppUser {
     loans: Array<LoanWithoutUser>
 }
