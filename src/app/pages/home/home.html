@@ -6,23 +6,23 @@
                 <!-- </div> -->
             </div>
             <div class="page-content">
-                <div class="borrowed-equipments">
-                    <div>Equipements loués</div>
+                <div class="section borrowed">
+                    <div>Emprunts en cours</div>
                     <div class="cards-grid">
                         @for (loan of ongoingLoans(); track loan) {
                             <equipment-card [loan]="loan"></equipment-card>
                         }
                     </div>
                 </div>
-                <div class="reserved-equipments">
-                    <div>Equipements réservés</div>
+                <div class="section reserved">
+                    <div>Réservations</div>
                     <div class="cards-grid">
                         @for (loan of plannedLoans(); track loan) {
                             <equipment-card [loan]="loan"></equipment-card>
                         }
                     </div>
                 </div>
-                <div class="returned-equipments">
+                <div class="section returned">
                     <div>Emprunts cloturés</div>
                     <div class="cards-grid">
                         @for (loan of pastLoans(); track loan) {

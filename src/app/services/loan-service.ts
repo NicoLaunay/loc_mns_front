@@ -18,7 +18,7 @@ export class LoanService {
   userService = inject(UserService)
 
   readonly allLoans = signal<Loan[]>([])
-  readonly showedLoans = signal<LoanWithoutUser[]>([])
+  readonly showedLoans = signal<Loan[]>([])
 
   readonly userLoans = signal<LoanWithoutUser[]>([])
   readonly userOngoingLoans = computed<LoanWithoutUser[]>(() => 

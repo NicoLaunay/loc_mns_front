@@ -5,8 +5,10 @@
         <path d="M1 20h22"/>
     </svg>
     <div class="equipment-name">{{loan()?.equipment?.model?.name}}</div>
+
     <div class="equipment-loan-date">
-        {{loan()?.startDate?.toLocaleDateString()}} au 
+        Du {{loan()?.startDate?.toLocaleDateString()}}
+        au
         @if (!loan()?.returnDate) {
             {{loan()?.endDate?.toLocaleDateString()}}
         } @else {

@@ -20,6 +20,16 @@
     stroke-width: 2;
 }
 
+.equipment-name {
+    font-weight: bold;
+}
+
+.equipment-loan-date {
+    text-align: center;
+    margin-top: 0.2rem;
+    font-style: italic;
+}
+
 .card-button-container {
     display: none;
     /* display: flex;
@@ -53,4 +63,9 @@
     display: block;
     fill: var(--color-lighter);
     width: 1rem;
+}
+
+/* TAGS */
+.late {
+    background-color: var(--color-warning);
 }
