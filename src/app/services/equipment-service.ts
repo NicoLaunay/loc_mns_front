@@ -14,10 +14,17 @@ export class EquipmentService {
   readonly allEquipments = signal<Equipment[]>([])
   readonly availableEquipmentsOfModel = signal<Equipment[]>([])
   readonly nbAvailableOfModel = computed(() => this.availableEquipmentsOfModel().length)
+  readonly focusedOnEquipment = signal<Equipment|null>(null)
 
   // -------------------------------------------------------------------
   // METHODES COMMUNES
   // -------------------------------------------------------------------
+
+  loadById(id:Number): Observable<Equipment> {
+    return this.httpClient
+      .get<Equipment>(environment.serverUrl + `/equipment/${id}`)
+      .pipe(tap(equipment => this.focusedOnEquipment.set(equipment)))
+  }
 
   getBorrowedEquipments(userId:Number): Observable<Equipment[]> {
     return this.getAll()

@@ -1,7 +1,7 @@
-import { Component, inject, input, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from "@angular/router";
-import { HttpClient } from '@angular/common/http';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { RouterLink } from "@angular/router";
 import { EquipmentService } from '../../services/equipment-service';
+
 
 @Component({
   selector: 'equipment-detail',
@@ -9,6 +9,16 @@ import { EquipmentService } from '../../services/equipment-service';
   templateUrl: './equipment-detail.html',
   styleUrl: './equipment-detail.css',
 })
-export class EquipmentDetail {
-  
+export class EquipmentDetail implements OnInit {
+  @Input() id!: string; // correspond au paramètre :id de la route
+
+  equipmentService = inject(EquipmentService)
+
+  protected equipment = this.equipmentService.focusedOnEquipment
+
+  ngOnInit():void {
+    this.equipmentService.loadById(Number(this.id)).subscribe()
+    console.log(this.equipment());
+    
+  }
 }

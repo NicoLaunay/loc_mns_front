@@ -7,8 +7,8 @@
                 <path d="M1 20h22"/>
             </svg>
             <div class="header-info">
-                <div class="equipment-name">Nom de l'Equipement</div>
-                <div><span class="equipment-type">Type</span> - <span class="equipment-model">Modèle</span></div>
+                <div class="equipment-name">{{ equipment()?.name }}</div>
+                <div><span class="equipment-type">{{ equipment()?.model?.type?.name }}</span> - <span class="equipment-model">{{ equipment()?.model?.name }}</span></div>
             </div>
         </div>
 
@@ -17,8 +17,7 @@
         </div>
 
         <div class="description">
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt libero eius laboriosam eligendi asperiores dolores esse maiores deleniti reiciendis dolor fugit suscipit tempora culpa laudantium, atque doloribus dolore beatae at.</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo sit, id iure molestiae facere provident sequi iusto aspernatur beatae consectetur officiis ipsum animi eveniet adipisci eaque dolorum odio nostrum dolore.</p>
+            <p>{{ equipment()?.model?.description }}</p>
         </div>
 
         <div class="button-container">

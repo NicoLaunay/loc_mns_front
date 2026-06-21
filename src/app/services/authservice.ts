@@ -37,11 +37,6 @@ export class AuthService {
       .get<AppUserWithLoans>(environment.serverUrl + `/user/me`))
 
       this.connectedUser.set(user)
-
-
-      console.log('connected user out: ')
-      console.log(this.connectedUser())
-      
   }
 
   login(credentials: { email: String, password: String }) {

@@ -3,7 +3,7 @@ import { Type } from "./type.model";
 type Model = {
     id: Number;
     name: String;
-    description: String = "description";
+    description: String;
     type: Type = Type();
     isComponent: Boolean = false;
     // documentations: Array<Documentation>;
@@ -14,7 +14,7 @@ type Model = {
 type LightModel = {
     id: Number;
     name: String;
-    description: String = "description";
+    description: String;
     type: Type = Type();
     isComponent: Boolean = false;
 
