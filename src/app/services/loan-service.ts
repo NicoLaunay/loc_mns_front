@@ -47,7 +47,7 @@ export class LoanService {
     effect(() => {
       const user = this.connectedUser()
       if (user) {
-        this.getAllByUserId(user.id).subscribe(loans => this.userLoans.set(loans))
+        this.getAllConnectedUserLoans().subscribe(loans => this.userLoans.set(loans))
       } else {
         this.userLoans.set([])
       }
