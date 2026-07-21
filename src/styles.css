@@ -202,5 +202,8 @@ form {
 
 
 @media (max-width: 768px) {
+  h1,h2 {
+    text-align: center;
+  }
   
 }
