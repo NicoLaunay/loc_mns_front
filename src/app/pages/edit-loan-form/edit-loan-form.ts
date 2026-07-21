@@ -131,14 +131,7 @@ export class EditLoanForm {
         var newLoans = []
 
         for (var equipment of equipmentsToBorrow) {
-          const newLoan = {
-            id: null,
-            user: user,
-            equipment: equipment,
-            startDate: startDate,
-            endDate: endDate,
-            returnDate: null
-          }
+          const newLoan = this.loanService.buildNewLoan(user, equipment, startDate, endDate)
           newLoans.push(newLoan)
           this.loanService.newLoans.set(newLoans)
         }

@@ -78,11 +78,7 @@ export class LoanService {
 
   create(loan: Loan): Observable<Loan> {
     return this.httpClient
-    .post<Loan>(
-      `${environment.serverUrl}/loan`,
-      loan
-    )
-    .pipe(tap((resultat) => this.getAll().subscribe()))
+      .post<Loan>(`${environment.serverUrl}/loan`, loan)
   }
 
   buildNewLoan(user: AppUser, equipment: Equipment, startDate: Date, endDate: Date, returnDate: Date | null = null): Loan {

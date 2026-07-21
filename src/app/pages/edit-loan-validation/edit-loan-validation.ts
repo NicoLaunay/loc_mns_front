@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification';
 import { AuthService } from '../../services/authservice';
+import { firstValueFrom, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'edit-loan-validation',
@@ -27,14 +28,12 @@ export class EditLoanValidation {
   readonly newLoans = this.loanService.newLoans
   readonly connectedUser = this.authService.connectedUser
 
-  onValidation() {
-    for (var loan of this.newLoans()) {
-      this.httpClient
-        .post<Loan[]>(`${environment.serverUrl}/loan`, loan)
-        .subscribe()
-    }
-    this.authService.getConnectedUser()
-    this.notification.open('Nouveaux prêts validés', 'valid')
-    this.router.navigateByUrl('/edit-loan')
+  async onValidation() {
+    await Promise.all(
+      this.newLoans().map(loan => firstValueFrom(this.loanService.create(loan)))
+    );
+    await this.authService.getConnectedUser();
+    this.notification.open('Nouveaux prêts validés', 'valid');
+    this.router.navigateByUrl('/edit-loan');
   }
 }
