@@ -78,7 +78,7 @@ export class EditLoanForm {
 
   onTypeChange(event: Event): void {
     const select = event.target as HTMLSelectElement;
-    this.modelService.getAllOfType(Number(select.value)).subscribe();
+    this.modelService.getAllOfType(Number(select.value));
   }
 
   onLoanDetailsChange(): void {

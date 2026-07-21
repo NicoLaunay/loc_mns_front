@@ -21,19 +21,22 @@ export class TypeService {
     this.httpClient
       .get<ApiType[]>(environment.serverUrl + '/type/list')
       .pipe(tap(types => this.allTypes.set(types.map(mapTypeWithIcon))))
+      .subscribe()
   }
 
   getEquipmentTypes(): void {
     this.httpClient
       .get<ApiType[]>(environment.serverUrl + '/type/list')
       .pipe(tap(types => this.allTypes.set(types.map(mapTypeWithIcon))))
+      .subscribe()
   }
 
   getBorrowableTypes(): void {
     this.httpClient
       .get<ApiType[]>(environment.serverUrl + '/type/borrowable')
-      .pipe(tap(types => this.borrowableTypes.set(
-        types.map(mapTypeWithIcon)
-      )))
+      .pipe(tap(types => this.borrowableTypes
+        .set(types.map(mapTypeWithIcon))
+      ))
+      .subscribe()
   }
 }

@@ -19,9 +19,10 @@ export class ModelService {
       .pipe(tap(models => this.allModels.set(models)))
   }
 
-  getAllOfType(typeId: Number): Observable<Model[]> {
-    return this.httpClient
+  getAllOfType(typeId: Number): void {
+    this.httpClient
       .get<Model[]>(environment.serverUrl + `/model/of-type-${typeId}`)
       .pipe(tap(models => this.allOfType.set(models)))
+      .subscribe()
   }
 }
