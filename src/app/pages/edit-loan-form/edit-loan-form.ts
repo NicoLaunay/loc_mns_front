@@ -123,6 +123,8 @@ export class EditLoanForm {
       
       if (!user || !startDate || !endDate) {
         this.notification.open('Formulaire incomplet', 'error')
+      } else if (!this.isEnoughAvailable) {
+        this.notification.open('Stock insuffisant', 'error')
       } else {
 
         // Sélection des équipements à emprunter
