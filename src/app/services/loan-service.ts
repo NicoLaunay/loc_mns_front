@@ -66,7 +66,7 @@ export class LoanService {
 
   getAllByUserId(id: Number): Observable<LoanWithoutUser[]> {
     return this.httpClient
-      .get<LoanWithoutUser[]>(environment.serverUrl + `/loan/user${id}`)
+      .get<LoanWithoutUser[]>(environment.serverUrl + `/loan/user/${id}`)
       .pipe(map(loans => mapLoanListDates(loans)))
   }
 
