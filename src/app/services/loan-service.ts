@@ -64,8 +64,14 @@ export class LoanService {
     if (!user) {
       throw new Error('Aucun utilisateur connecté')
     }
-    this.getAllByUserId(user.id).subscribe(loans =>
+    this.getAllConnectedUserLoans().subscribe(loans =>
       this.userLoans.set(loans))
+  }
+
+  getAllConnectedUserLoans(): Observable<LoanWithoutUser[]> {
+    return this.httpClient
+      .get<LoanWithoutUser[]>(environment.serverUrl + `/loan/me`)
+      .pipe(map(loans => mapLoanListDates(loans)))
   }
 
   // -------------------------------------------------------------------
@@ -84,13 +90,13 @@ export class LoanService {
       // .pipe(tap(loans => this.userOngoingLoans.set(loans)))
   }
 
-  getPlannedyUserId(id: Number): Observable<Loan[]> {
+  getPlannedByUserId(id: Number): Observable<Loan[]> {
     return this.httpClient
       .get<Loan[]>(environment.serverUrl + `/loan/user${id}/planned`)
       // .pipe(tap(loans => this.userPlannedLoans.set(loans)))
   }
 
-  getPastyUserId(id: Number): Observable<Loan[]> {
+  getPastByUserId(id: Number): Observable<Loan[]> {
     return this.httpClient
       .get<Loan[]>(environment.serverUrl + `/loan/user${id}/past`)
       // .pipe(tap(loans => this.userPastLoans.set(loans)))
