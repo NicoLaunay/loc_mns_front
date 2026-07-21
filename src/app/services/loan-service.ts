@@ -36,10 +36,6 @@ export class LoanService {
     ))
 
   readonly connectedUser = this.authService.connectedUser
-  
-  newStartDate = signal<Date | null>(null)
-  newEndDate = signal<Date | null>(null)
-  newReturnDate = signal<Date | null>(null)
 
   newLoans = signal<Loan[]>([])
 
@@ -58,16 +54,6 @@ export class LoanService {
   // METHODES COMMUNES
   // -------------------------------------------------------------------
 
-  //DEVENU OBSOLETE SAUF CAS PARTICULIER
-  loadConnectedUserLoans(): void {
-    const user = this.authService.connectedUser()
-    if (!user) {
-      throw new Error('Aucun utilisateur connecté')
-    }
-    this.getAllConnectedUserLoans().subscribe(loans =>
-      this.userLoans.set(loans))
-  }
-
   getAllConnectedUserLoans(): Observable<LoanWithoutUser[]> {
     return this.httpClient
       .get<LoanWithoutUser[]>(environment.serverUrl + `/loan/me`)
@@ -82,24 +68,6 @@ export class LoanService {
     return this.httpClient
       .get<LoanWithoutUser[]>(environment.serverUrl + `/loan/user${id}`)
       .pipe(map(loans => mapLoanListDates(loans)))
-  }
-
-  getOngoingByUserId(id: Number): Observable<Loan[]> {
-    return this.httpClient
-      .get<Loan[]>(environment.serverUrl + `/loan/user${id}/ongoing`)
-      // .pipe(tap(loans => this.userOngoingLoans.set(loans)))
-  }
-
-  getPlannedByUserId(id: Number): Observable<Loan[]> {
-    return this.httpClient
-      .get<Loan[]>(environment.serverUrl + `/loan/user${id}/planned`)
-      // .pipe(tap(loans => this.userPlannedLoans.set(loans)))
-  }
-
-  getPastByUserId(id: Number): Observable<Loan[]> {
-    return this.httpClient
-      .get<Loan[]>(environment.serverUrl + `/loan/user${id}/past`)
-      // .pipe(tap(loans => this.userPastLoans.set(loans)))
   }
 
   getAll(): Observable<Loan[]> {
@@ -128,9 +96,9 @@ export class LoanService {
       }
   }
 
-  // update(loan: Loan, id: number): void {
-  //   this.httpClient
-  //   .put<Loan>(`${environment.serverUrl}/loan/${id}`, loan)
-  //   .pipe(tap((resultat) => this.getAll().subscribe()))
-  // }
+  update(loan: Loan, id: number): Observable<Loan> {
+    return this.httpClient
+    .put<Loan>(`${environment.serverUrl}/loan/${id}`, loan)
+    .pipe(tap((resultat) => this.getAll().subscribe()))
+  }
 }

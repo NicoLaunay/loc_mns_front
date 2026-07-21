@@ -25,7 +25,6 @@ export class Home implements OnInit {
 
   ngOnInit(): void {
     this.authService.getConnectedUser()
-    // this.loanService.loadConnectedUserLoans()
   }
 
 }
