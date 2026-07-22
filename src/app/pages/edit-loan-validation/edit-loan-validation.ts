@@ -1,14 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { LoanService } from '../../services/loan-service';
 import { EquipmentCard } from '../../layouts/equipment-card/equipment-card';
-import { Loan } from '../../models/loan';
-import { UserService } from '../../services/user-service';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification';
 import { AuthService } from '../../services/authservice';
-import { firstValueFrom, forkJoin } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'edit-loan-validation',
@@ -23,7 +20,6 @@ export class EditLoanValidation {
   notification = inject(NotificationService)
   loanService = inject(LoanService)
   authService = inject(AuthService)
-  userService = inject(UserService)
 
   readonly newLoans = this.loanService.newLoans
   readonly connectedUser = this.authService.connectedUser

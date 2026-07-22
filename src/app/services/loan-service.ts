@@ -4,7 +4,6 @@ import { map, Observable, tap } from 'rxjs';
 import { Loan, LoanWithoutUser } from '../models/loan';
 import { environment } from '../../environments/environment';
 import { Equipment } from '../models/equipment';
-import { UserService } from './user-service';
 import { AuthService } from './authservice';
 import { AppUser } from '../models/app-user';
 import { mapLoanListDates } from '../models/loan.mapper';
@@ -15,7 +14,6 @@ import { mapLoanListDates } from '../models/loan.mapper';
 export class LoanService {
   httpClient = inject(HttpClient)
   authService = inject(AuthService)
-  userService = inject(UserService)
 
   readonly allLoans = signal<Loan[]>([])
   readonly showedLoans = signal<Loan[]>([])
