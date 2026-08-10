@@ -14,6 +14,7 @@ import { Type } from '../../models/type.model';
 import { NotificationService } from '../../services/notification';
 import { AuthService } from '../../services/authservice';
 import { UserService } from '../../services/user-service';
+import { dateOrderValidator, startIsFutureValidator } from '../../validators/date-validators'
 
 @Component({
   selector: 'edit-loan-form',
@@ -49,7 +50,7 @@ export class EditLoanForm {
     startDate: this.fb.control<Date | null>(null, Validators.required),
     endDate: this.fb.control<Date | null>(null, Validators.required),
     amount: this.fb.control<number>(1)
-  });
+  }, {validators: [dateOrderValidator, startIsFutureValidator] });
 
   nbWanted = signal<number>(1)
 
@@ -110,17 +111,16 @@ export class EditLoanForm {
   }
 
   onValidation(): void {
+    this.form.markAllAsTouched(); // affiche tous les messages d'erreur adéquats
     if (this.form.valid) {
 
       // TEMPORAIRE
       this.authService.getConnectedUser()
 
       const user = this.authService.connectedUser()
-      const startDate = this.form.controls.startDate.value
-      const endDate = this.form.controls.endDate.value
+      const startDate = this.form.controls['startDate'].value
+      const endDate = this.form.controls['endDate'].value
 
-      console.log(user, startDate, endDate)
-      
       if (!user || !startDate || !endDate) {
         this.notification.open('Formulaire incomplet', 'error')
       } else if (!this.isEnoughAvailable) {

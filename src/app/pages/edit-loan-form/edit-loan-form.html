@@ -33,6 +33,9 @@
                         <div class="field-warning">Le champ est obligatoire</div>
                     }
                 }
+                @if (form.hasError('startIsPast') && form.get('startDate')?.touched) {
+                    <div class="field-warning">La date de début ne peut pas être passée</div>
+                }
             </div>
             <div class="form-field">
                 <label for="endDate">Date de fin</label>
@@ -42,8 +45,14 @@
                         <div class="field-warning">Le champ est obligatoire</div>
                     }
                 }
+                @if (form.hasError('dateOrder') && form.get('startDate')?.touched && form.get('endDate')?.touched) {
+                    <div class="field-warning">La date de fin doit être postérieure à la date de début</div>
+                }
             </div>
         </div>
+
+        <!-- Cohérence des dates -->
+        
 
         <!-- @if (nbAvailable()) { -->
             <div>{{ nbAvailable() }} exemplaires disponibles aux dates indiquées</div>
