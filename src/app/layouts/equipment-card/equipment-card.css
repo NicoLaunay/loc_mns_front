@@ -29,6 +29,10 @@
         font-weight: bold;
     }
 
+    .equipment-model {
+        font-weight: bold;
+    }
+
     .equipment-loan-date {
         text-align: center;
         margin-top: 0.2rem;

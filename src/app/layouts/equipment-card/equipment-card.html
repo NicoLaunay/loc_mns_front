@@ -6,7 +6,8 @@
     </svg>
 
     <div class="card-content">
-        <div class="equipment-name">{{loan()?.equipment?.model?.name}}</div>
+        <div class="equipment-name">{{loan()?.equipment?.name}}</div>
+        <div class="equipment-model">{{loan()?.equipment?.model?.name}}</div>
 
         <div class="equipment-loan-date">
             Du {{loan()?.startDate?.toLocaleDateString()}}

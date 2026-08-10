@@ -1,8 +1,11 @@
 <div class="container">
-    @for (loan of newLoans(); track $index) {
-        <equipment-card [loan] = loan></equipment-card>
-    }
+    <div class="cards-grid">
+        @for (loan of newLoans(); track $index) {
+            <equipment-card [loan] = loan></equipment-card>
+        }
 
+    </div>
+    
     <div>
         <button class="link-button-primary" type="button" (click)="onValidation()">
             Valider
