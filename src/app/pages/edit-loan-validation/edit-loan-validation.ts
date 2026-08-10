@@ -24,6 +24,11 @@ export class EditLoanValidation {
   readonly newLoans = this.loanService.newLoans
   readonly connectedUser = this.authService.connectedUser
 
+  ngOnInit() {
+    console.log(this.newLoans());
+    
+  }
+
   async onValidation() {
     await Promise.all(
       this.newLoans().map(loan => firstValueFrom(this.loanService.create(loan)))

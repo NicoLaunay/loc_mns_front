@@ -83,9 +83,9 @@ export class LoanService {
         id: null,
         user: user,
         equipment: equipment,
-        startDate: startDate,
-        endDate: endDate,
-        returnDate: returnDate
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+        returnDate: returnDate ? new Date(returnDate) : null
       }
   }
 
