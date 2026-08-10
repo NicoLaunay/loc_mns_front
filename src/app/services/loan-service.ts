@@ -11,13 +11,13 @@ import { mapLoanListDates } from '../models/loan.mapper';
 @Injectable({
   providedIn: 'root',
 })
+
 export class LoanService {
   httpClient = inject(HttpClient)
   authService = inject(AuthService)
 
   readonly allLoans = signal<Loan[]>([])
   readonly showedLoans = signal<Loan[]>([])
-
   readonly userLoans = signal<LoanWithoutUser[]>([])
   readonly userOngoingLoans = computed<LoanWithoutUser[]>(() => 
     this.userLoans().filter(loan => 
@@ -32,7 +32,6 @@ export class LoanService {
     this.userLoans().filter(loan => 
       loan.returnDate
     ))
-
   readonly connectedUser = this.authService.connectedUser
 
   newLoans = signal<Loan[]>([])

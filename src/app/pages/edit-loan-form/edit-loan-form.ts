@@ -93,7 +93,7 @@ export class EditLoanForm {
             .subscribe()
 
         }
-      })
+      })      
   }
 
   onAmountChange(event: Event): void {
