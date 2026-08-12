@@ -6,9 +6,12 @@
     </svg>
 
     <div class="card-content">
-        <div class="equipment-name">{{loan()?.equipment?.name}}</div>
-        <div class="equipment-model">{{loan()?.equipment?.model?.name}}</div>
-
+        <div class="equipment-header">
+            <div class="equipment-name">{{loan()?.equipment?.name}}</div>
+            <div class="mobile-ui"> - </div>
+            <div class="equipment-model">{{loan()?.equipment?.model?.name}}</div>
+        </div>
+        
         <div class="equipment-loan-date">
             Du {{loan()?.startDate?.toLocaleDateString()}}
             au
