@@ -110,7 +110,14 @@
         position: static;
 
         .equipment-header {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+
+            .mobile-ui {
+                display: none;
+            }
         }
     }
 
