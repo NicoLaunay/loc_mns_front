@@ -55,7 +55,7 @@ main {
 .link-button-primary {
     border: 0;
     background-color: var(--color-accent);
-    padding: 0.5rem;
+    padding: 0.6rem 1rem;
     border-radius: 50px;
     text-decoration: none;
     color: var(--color-lighter);
@@ -63,9 +63,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
-    width: 3.5rem;
-    height: 3.5rem;
 
     span.desktop-ui {
         margin-left: 0.5rem;
@@ -101,6 +98,13 @@ main {
     width: 2rem;
     height: 2rem;
     fill: var(--color-lighter);
+}
+
+.mobile-button {
+    font-size: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 0.5rem;
 }
 
 /* Gestion de l'apparence des notifications */
