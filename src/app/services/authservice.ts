@@ -57,15 +57,34 @@ export class AuthService {
   decodeJwt() {
     const jwt = localStorage.getItem('jwt')
 
-    if (jwt) {
-      const jwtParts = jwt.split('.')
-      const bodyBase64 = jwtParts[1]
-      const bodyJson = atob(bodyBase64)
-      const body = JSON.parse(bodyJson)
+    // Si pas de token, on s'assure que jwtInfo est bien vide
+    if (!jwt) {
+      this.jwtInfo.set(null)
+      return
+    }
+
+    try {
+      const bodyBase64 = jwt.split('.')[1]
+      const body = JSON.parse(atob(bodyBase64))
+
+      // body.exp = propriété du token, en secondes, Date.now() en millisecondes
+      const isExpired = !body.exp || body.exp * 1000 < Date.now()
+
+      if (isExpired) {
+        localStorage.removeItem('jwt')
+        this.jwtInfo.set(null)
+        return
+      }
+
       this.jwtInfo.set({
         email: body.sub,
         role: body.role
-      })      
+      })
+
+    } catch (e) {
+      // Nettoyage si token illisible ou corrompu
+      localStorage.removeItem('jwt')
+      this.jwtInfo.set(null)
     }
   }
 
