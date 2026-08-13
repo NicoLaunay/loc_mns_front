@@ -1,3 +1,4 @@
+import { AppUser } from "./app-user"
 import { Equipment } from "./equipment"
 
 export interface LoanDetails {

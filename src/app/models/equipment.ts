@@ -1,6 +1,7 @@
 import { Location } from "./location";
 import { LoanWithoutEquipment } from "./loan";
 import { Model, ModelBuilder } from "./model";
+import { EquipmentStatus } from "../enums/equipment-status.enum";
 
 export interface TestEquipment {
     id: number;
@@ -18,6 +19,7 @@ export interface Equipment {
 
 export interface EquipmentWithLoans extends Equipment {
     loans: Array<LoanWithoutEquipment>;
+    status: EquipmentStatus;
 }
 
 export class EquipmentBuilder implements EquipmentWithLoans {
@@ -27,6 +29,7 @@ export class EquipmentBuilder implements EquipmentWithLoans {
     model: Model = new ModelBuilder().build();
     location: Location = { id: 1, name: 'undefined location' };
     loans: Array<LoanWithoutEquipment> = [];
+    status: EquipmentStatus = EquipmentStatus.UNAVAILABLE;
 
     public withId(id: number): this {
         this.id = id;
@@ -81,6 +84,7 @@ export class EquipmentBuilder implements EquipmentWithLoans {
             model: this.model,
             location: this.location,
             loans: this.loans,
+            status: this.status
         };
     }
 }
