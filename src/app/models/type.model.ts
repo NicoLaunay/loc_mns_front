@@ -7,6 +7,7 @@ export interface Type extends ApiType {
     icon: string
 }
 
+
 // SEULE source de vérité pour les icônes de type.
 // Pour associer une icône à un type, ajouter une entrée ici.
 // Noms à choisir sur https://fonts.google.com/icons (police "Material Icons").
@@ -37,4 +38,52 @@ export function iconForTypeName(name?: string | null): string {
 
 export function mapTypeWithIcon(apiType: ApiType): Type {
     return { ...apiType, icon: iconForTypeName(apiType.name) }
+}
+
+export class TypeBuilder implements ApiType {
+    id: number = 0;
+    name: string = 'unnamed type';
+    icon: string | null = null;
+
+    /**
+     * builds and returns a TypeBuilder Object
+     */
+    public build() {
+        if (this.icon) {
+            return {
+                id: this.id,
+                name: this.name,
+                icon: this.icon
+            }
+        }
+        return {
+            id: this.id,
+            name: this.name
+        }
+    }
+
+    /**
+     * sets id and returns the TypeBuilder object
+     */
+    public withId(id: number) {
+        this.id = id
+        return this
+    }
+
+    /**
+     * sets name and returns the TypeBuilder object
+     */
+    public withName(name: string) {
+        this.name = name
+        return this
+    }
+
+    /**
+     * sets name and returns the TypeBuilder object
+     */
+    public withIcon(icon: string) {
+        this.icon = icon
+        return this
+    }
+
 }
