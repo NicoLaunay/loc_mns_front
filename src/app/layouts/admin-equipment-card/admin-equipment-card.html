@@ -1,15 +1,18 @@
 <div class="line-card">
     <div class="header">
-        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <mat-icon class="card-icon">{{ equipment()?.model?.type?.name | typeIcon }}</mat-icon>
+        <!-- <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <rect width="18" height="13" x="3" y="4" rx="2"/>
             <path d="M1 20h22"/>
-        </svg>
+        </svg> -->
         <div class="line-card-info">
             <div>
-                <span class="id">{{equipment()?.id}}</span> - <span class="model">{{equipment()?.model?.name}}</span>
+                <span class="id">{{equipment()?.id}}</span> - 
+                <span class="name">{{equipment()?.name}}</span> - 
+                <span class="model">{{equipment()?.model?.name}}</span>
             </div>
             <div>
-                <span class="status">[Statut]</span> - 
+                <span class="status">[statut]</span> - 
                 <span class="borrower-id">[Id emprunteur]</span> - 
                 <span class="start-date">[Date début]</span> au 
                 <span class="end-date">[Date fin]</span>

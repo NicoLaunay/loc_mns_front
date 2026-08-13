@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AccreditationService } from './services/accreditation';
 import { AuthService } from './services/authservice';
 import { MenuBurger } from './layouts/menu-burger/menu-burger';
+import { MatIconRegistry } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,10 @@ export class App {
 
   ngOnInit() {
     this.accreditationService.getAll()
+  }
+
+  constructor() {
+    inject(MatIconRegistry).setDefaultFontSetClass('material-symbols-outlined');
   }
 
 }

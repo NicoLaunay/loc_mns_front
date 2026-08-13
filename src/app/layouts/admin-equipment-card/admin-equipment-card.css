@@ -20,10 +20,9 @@
     width: 3.5rem;
     height: 3.5rem;
     fill: none;
-    stroke: var(--color-darker);
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 2;
+    font-size: 3.5rem;  /* AJOUT : c'est ça qui dimensionne l'icône */
+    line-height: 3.5rem;
+    color: var(--color-darker);
 }
 
 .line-card-info {
