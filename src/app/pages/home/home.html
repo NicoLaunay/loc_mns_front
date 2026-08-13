@@ -10,7 +10,7 @@
                     <div>Emprunts en cours</div>
                     <div class="cards-grid">
                         @for (loan of ongoingLoans(); track loan) {
-                            <equipment-card [loan]="loan"></equipment-card>
+                            <loan-card [loan]="loan"></loan-card>
                         }
                     </div>
                 </div>
@@ -18,7 +18,7 @@
                     <div>Réservations</div>
                     <div class="cards-grid">
                         @for (loan of plannedLoans(); track loan) {
-                            <equipment-card [loan]="loan"></equipment-card>
+                            <loan-card [loan]="loan"></loan-card>
                         }
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                     <div>Emprunts cloturés</div>
                     <div class="cards-grid">
                         @for (loan of pastLoans(); track loan) {
-                            <equipment-card [loan]="loan"></equipment-card>
+                            <loan-card [loan]="loan"></loan-card>
                         }
                     </div>
                 </div>

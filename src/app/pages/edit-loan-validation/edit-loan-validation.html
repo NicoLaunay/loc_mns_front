@@ -1,7 +1,7 @@
 <div class="container">
     <div class="cards-grid">
         @for (loan of newLoans(); track $index) {
-            <equipment-card [loan] = loan></equipment-card>
+            <loan-card [loan] = loan></loan-card>
         }
 
     </div>

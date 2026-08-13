@@ -1,14 +1,16 @@
-import { Component, computed, input, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { LoanWithoutUser } from '../../models/loan';
+import { MatIconModule } from '@angular/material/icon';
+import { TypeIconPipe } from '../../pipes/type-icon.pipe';
 
 @Component({
-  selector: 'equipment-card',
-  imports: [RouterLink],
-  templateUrl: './equipment-card.html',
-  styleUrl: './equipment-card.css',
+  selector: 'loan-card',
+  imports: [TypeIconPipe, RouterLink, MatIconModule],
+  templateUrl: './loan-card.html',
+  styleUrl: './loan-card.css',
 })
-export class EquipmentCard {
+export class LoanCard {
   loan = input<LoanWithoutUser>();
   
   isClosed = computed<boolean>(() => {

@@ -1,13 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { EquipmentCard } from '../../layouts/equipment-card/equipment-card';
+import { LoanCard } from '../../layouts/loan-card/loan-card';
 import { RouterLink } from '@angular/router';
 import { LoanService } from '../../services/loan-service';
-import { UserService } from '../../services/user-service';
 import { AuthService } from '../../services/authservice';
 
 @Component({
   selector: 'home',
-  imports: [EquipmentCard, RouterLink],
+  imports: [LoanCard, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

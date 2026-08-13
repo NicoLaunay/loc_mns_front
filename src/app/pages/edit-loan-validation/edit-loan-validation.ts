@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { LoanService } from '../../services/loan-service';
-import { EquipmentCard } from '../../layouts/equipment-card/equipment-card';
+import { LoanCard } from '../../layouts/loan-card/loan-card';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification';
@@ -9,7 +9,7 @@ import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'edit-loan-validation',
-  imports: [EquipmentCard],
+  imports: [LoanCard],
   templateUrl: './edit-loan-validation.html',
   styleUrl: './edit-loan-validation.css',
 })

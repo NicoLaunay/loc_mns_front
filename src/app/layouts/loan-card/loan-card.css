@@ -102,6 +102,10 @@
     .card-icon {
         width: 5rem;
         height: 5rem;
+        fill: none;
+        font-size: 5rem;
+        line-height: 5rem;
+        color: var(--color-darker);
     }
 
     .card-content {
