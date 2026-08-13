@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { Equipment, EquipmentWithLoans } from '../../models/equipment';
+import { Component, computed, input } from '@angular/core';
+import { EquipmentWithLoans } from '../../models/equipment';
 import { TypeIconPipe } from "../../pipes/type-icon.pipe";
 import { MatIconModule } from '@angular/material/icon';
 
@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AdminEquipmentCard {
 
-  equipment = input<EquipmentWithLoans>();
+  readonly equipment = input<EquipmentWithLoans>();
+  readonly lastLoan = computed(() => this.equipment()?.loans[0] || null)
 
 }

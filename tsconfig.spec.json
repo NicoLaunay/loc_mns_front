@@ -12,5 +12,5 @@
   "include": [
     "src/**/*.d.ts",
     "src/**/*.spec.ts"
-  ]
+, "src/app/models/equipment.ts", "src/app/models/model.ts", "src/app/models/loan.ts"  ]
 }

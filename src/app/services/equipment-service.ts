@@ -3,6 +3,8 @@ import { TestEquipment, Equipment, EquipmentWithLoans } from '../models/equipmen
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { LoanService } from './loan-service';
+import { mapStatus } from '../models/equipment.mapper';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +12,9 @@ import { environment } from '../../environments/environment';
 export class EquipmentService {
 
   httpClient = inject(HttpClient)
+  loanService = inject(LoanService)
 
-  readonly allEquipments = signal<Equipment[]>([])
+  readonly allEquipments = signal<EquipmentWithLoans[]>([])
   readonly availableEquipmentsOfModel = signal<Equipment[]>([])
   readonly nbAvailableOfModel = computed(() => this.availableEquipmentsOfModel().length)
   readonly focusedOnEquipment = signal<Equipment|null>(null)
@@ -49,9 +52,23 @@ export class EquipmentService {
   // METHODES ADMIN
   // -------------------------------------------------------------------
 
-  getAll(): Observable<Equipment[]> {
+  getAll(): Observable<EquipmentWithLoans[]> {
     return this.httpClient
-      .get<Equipment[]>(environment.serverUrl + '/equipment/list')
-      .pipe(tap(allEquipments => this.allEquipments.set(allEquipments))) // met à jour accreditationList avant de return le reultat de la requête
+      .get<EquipmentWithLoans[]>(environment.serverUrl + '/equipment/list')
+      .pipe(tap(allEquipments => this.allEquipments.set(mapStatus(allEquipments)))) // met à jour accreditationList avant de return le reultat de la requête
   }
+
+  // getAllWithLoans(): Observable<EquipmentWithLoans[]> {
+  //   return this.httpClient
+  //     .get<EquipmentWithLoans[]>(environment.serverUrl + '/equipment/list')
+  //     .pipe(
+  //       tap(equipments => this.allEquipmentsWithLoans.set(
+  //         equipments.map(equipment => {
+  //           equipment.loans = this.loanService.getAllByEquipmentId(equipment.id).subscribe()
+  //           equipment.loans.sort((loanA, loanB) => Number(loanB.startDate) - Number(loanA.startDate))
+  //           return equipment
+  //         })
+  //       ))
+  //     ) // met à jour accreditationList avant de return le reultat de la requête
+  // }
 }

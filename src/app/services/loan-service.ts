@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
-import { Loan, LoanWithoutUser } from '../models/loan';
+import { Loan, LoanWithoutEquipment, LoanWithoutUser } from '../models/loan';
 import { environment } from '../../environments/environment';
 import { Equipment } from '../models/equipment';
 import { AuthService } from './authservice';
 import { AppUser } from '../models/app-user';
-import { mapLoanListDates } from '../models/loan.mapper';
+import { mapLoanListDates, orderLoanList } from '../models/loan.mapper';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,7 @@ export class LoanService {
   readonly allLoans = signal<Loan[]>([])
   readonly showedLoans = signal<Loan[]>([])
   readonly userLoans = signal<LoanWithoutUser[]>([])
+  readonly equipmentLoans = signal<LoanWithoutEquipment[]>([])
   readonly userOngoingLoans = computed<LoanWithoutUser[]>(() => 
     this.userLoans().filter(loan => 
       !loan.returnDate && 
@@ -71,6 +72,12 @@ export class LoanService {
     return this.httpClient
       .get<Loan[]>(`${environment.serverUrl}/loan/list`)
       .pipe(tap(allLoans => this.showedLoans.set(allLoans))) // met à jour accreditationList avant de return le reultat de la requête
+  }
+
+  getAllByEquipmentId(id: Number): Observable<LoanWithoutEquipment[]> {
+    return this.httpClient
+      .get<LoanWithoutEquipment[]>(environment.serverUrl + `/loan/equipment/${id}`)
+      .pipe(map(loans => orderLoanList(mapLoanListDates(loans))))
   }
 
   create(loan: Loan): Observable<Loan> {

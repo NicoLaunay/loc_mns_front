@@ -12,10 +12,12 @@
                 <span class="model">{{equipment()?.model?.name}}</span>
             </div>
             <div>
-                <span class="status">[statut]</span> - 
-                <span class="borrower-id">[Id emprunteur]</span> - 
-                <span class="start-date">[Date début]</span> au 
-                <span class="end-date">[Date fin]</span>
+                <span class="status">{{ equipment()?.status }}</span>
+                @if (lastLoan() && !lastLoan()?.returnDate) {
+                    <span class="borrower-id"> - Utilisateur {{ lastLoan()?.user?.id }}</span> - 
+                    <span class="start-date">{{ lastLoan()?.startDate }}</span> au 
+                    <span class="end-date">{{ lastLoan()?.endDate }}</span>
+                }
             </div>
             <div>
                 <span class="condition">{{equipment()?.condition}}</span>

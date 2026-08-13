@@ -43,22 +43,16 @@ export function mapTypeWithIcon(apiType: ApiType): Type {
 export class TypeBuilder implements ApiType {
     id: number = 0;
     name: string = 'unnamed type';
-    icon: string | null = null;
+    icon: string = DEFAULT_TYPE_ICON;
 
     /**
      * builds and returns a TypeBuilder Object
      */
-    public build() {
-        if (this.icon) {
-            return {
-                id: this.id,
-                name: this.name,
-                icon: this.icon
-            }
-        }
+    public build(): Type {
         return {
             id: this.id,
-            name: this.name
+            name: this.name,
+            icon: this.icon
         }
     }
 
