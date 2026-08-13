@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 import { Equipment } from '../models/equipment';
 import { AuthService } from './authservice';
 import { AppUser } from '../models/app-user';
-import { mapLoanListDates, orderLoanList } from '../models/loan.mapper';
+import { mapLoanListDates } from '../models/loan.mapper';
 
 @Injectable({
   providedIn: 'root',
@@ -72,12 +72,6 @@ export class LoanService {
     return this.httpClient
       .get<Loan[]>(`${environment.serverUrl}/loan/list`)
       .pipe(tap(allLoans => this.showedLoans.set(allLoans))) // met à jour accreditationList avant de return le reultat de la requête
-  }
-
-  getAllByEquipmentId(id: Number): Observable<LoanWithoutEquipment[]> {
-    return this.httpClient
-      .get<LoanWithoutEquipment[]>(environment.serverUrl + `/loan/equipment/${id}`)
-      .pipe(map(loans => orderLoanList(mapLoanListDates(loans))))
   }
 
   create(loan: Loan): Observable<Loan> {
