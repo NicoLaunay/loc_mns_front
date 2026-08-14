@@ -10,8 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './admin-equipment-card.css',
 })
 export class AdminEquipmentCard {
-
   readonly equipment = input<EquipmentWithLoans>();
   readonly lastLoan = computed(() => this.equipment()?.loans[0] || null)
-
 }

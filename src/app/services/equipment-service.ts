@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { TestEquipment, Equipment, EquipmentWithLoans } from '../models/equipment';
+import { Equipment, EquipmentWithLoans } from '../models/equipment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -27,14 +27,6 @@ export class EquipmentService {
     return this.httpClient
       .get<Equipment>(environment.serverUrl + `/equipment/${id}`)
       .pipe(tap(equipment => this.focusedOnEquipment.set(equipment)))
-  }
-
-  getBorrowedEquipments(userId:Number): Observable<Equipment[]> {
-    return this.getAll()
-  }
-
-  getReservedEquipments(userId:Number): Observable<Equipment[]> {
-    return this.getAll()
   }
 
   getAllOfModelAvailableOnPeriod(startDate: Date, endDate: Date, modelId: Number): Observable<Equipment[]> {
