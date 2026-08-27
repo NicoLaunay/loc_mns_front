@@ -17,7 +17,7 @@
         
         <div class="form-field">
             <label>Mot de Passe</label>
-            <input formControlName="password">
+            <input formControlName="password" type="password">
 
             @if (formulaire.get('password')?.touched) {
                 @if (formulaire.get('password')?.hasError('required')) {
