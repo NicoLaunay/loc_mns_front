@@ -1,0 +1,76 @@
+<div class="container">
+    <h1>INSCRIPTION</h1>
+    <form class="formulaire" [formGroup]="formulaire" (ngSubmit)="onSignin()"> <!-- crochets = on passe une variable, parenthèses = -->
+        
+        <div class="form-field">
+            <label>Prénom</label>
+            <input formControlName="name">
+
+            @if (formulaire.get('name')?.touched) {
+                @if (formulaire.get('name')?.hasError('required')) {
+                    <div class="field-warning">Le champ est obligatoire</div>
+                }
+            }
+        </div>
+
+        <div class="form-field">
+            <label>Nom</label>
+            <input formControlName="surname">
+
+            @if (formulaire.get('surname')?.touched) {
+                @if (formulaire.get('surname')?.hasError('required')) {
+                    <div class="field-warning">Le champ est obligatoire</div>
+                }
+            }
+        </div>        
+        
+        <div class="form-field">
+            <label>Email</label>
+            <input placeholder="Ex. john.doe@email.com" formControlName="email">
+
+            @if (formulaire.get('email')?.touched) {
+                @if(formulaire.get('email')?.hasError('email')) {
+                    <div class="field-warning">Doit être une adresse mail</div> <!-- les mat-errors ne s'affichent de toute façon que si le champ est en erreur, sinon il sont invisibles. le @if sert juste à choisir le quel est le bon -->
+                }
+                @if (formulaire.get('email')?.hasError('required')) {
+                    <div class="field-warning">Le champ est obligatoire</div>
+                }
+            }
+        </div>
+        
+        <div class="form-field">
+            <label>Mot de Passe</label>
+            <input formControlName="password1">
+
+            @if (formulaire.get('password1')?.touched) {
+                @if (formulaire.get('password1')?.hasError('required')) {
+                    <div class="field-warning">Le champ est obligatoire</div>
+                }
+            }
+        </div>
+
+        <div class="form-field">
+            <label>Mot de Passe</label>
+            <input formControlName="password2">
+
+            @if (formulaire.get('password2')?.touched) {
+                @if (formulaire.get('password2')?.hasError('required')) {
+                    <div class="field-warning">Le champ est obligatoire</div>
+                }
+            }
+        </div>
+
+        <div class="form-buttons">
+            <button class="link-button-primary" type="submit">
+                S'inscrire
+            </button>
+            <a class="link-button-secondary" [routerLink]="['/login']">
+                Se Connecter
+            </a>
+        </div>
+
+        
+    </form>
+
+
+</div>

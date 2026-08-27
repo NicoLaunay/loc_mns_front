@@ -12,12 +12,14 @@ import { userGuard } from './guards/user-guard';
 import { adminGuard } from './guards/admin-guard';
 import { homeGuard } from './guards/home-guard';
 import { EditLoanValidation } from './pages/edit-loan-validation/edit-loan-validation';
+import { Signin } from './pages/signin/signin';
 
 export const routes: Routes = [
     { path: '', component: Home, title: 'LocNES - Accueil', canActivate:[userGuard, homeGuard] },
     { path: 'home', component: Home, title: 'LocNES - Accueil', canActivate:[userGuard, homeGuard] },
     { path: 'home-admin', component: AdminHome, title: 'LocNES - Accueil Admin', canActivate:[adminGuard] },
-    { path: 'login', component: Login, title: 'LocNES - Login' },
+    { path: 'login', component: Login, title: 'LocNES - Connexion' },
+    { path: 'signin', component: Signin, title: 'LocNES - Inscription' },
     
     { path: 'edit-loan/validation', component: EditLoanValidation, title: 'LocNES - Nouvelle Réservation', canActivate:[userGuard] },
     { path: 'edit-loan/:id/validation', component: EditLoanValidation, title: 'LocNES - Nouvelle Réservation', canActivate:[userGuard] },

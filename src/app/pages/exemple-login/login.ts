@@ -5,12 +5,12 @@ import { MatInputModule } from "@angular/material/input";
 import { NotificationService } from '../../services/notification';
 import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../services/authservice';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'login',
-  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule],
+  imports: [FormsModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
