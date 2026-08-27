@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     padding: 1rem 1.4em;
     border: 1px solid var(--color-darker);
     border-radius: 0.5rem;
@@ -11,8 +12,9 @@
 
 .card-icon {
     display: block;
-    width: 4rem;
-    height: 4rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
     fill: none;
     stroke: var(--color-darker);
     stroke-linecap: round;
@@ -25,7 +27,7 @@
     flex-direction: column;
     align-items: start;
     margin-left: 1rem;
-    position: relative;
+    flex: 1;
 
     .equipment-header {
         display: flex;
@@ -42,7 +44,6 @@
     }
 
     .equipment-loan-date {
-        text-align: center;
         margin-top: 0.2rem;
         font-style: italic;
     }
@@ -52,14 +53,14 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    margin-left: 1rem;
-    margin-right: 1.4rem;
-    position: absolute;
+    /* margin-left: 1rem; */
+    /* margin-right: 1.4rem; */
+    /* position: absolute;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
     justify-self: end;
-    align-self: center;
+    align-self: center; */
 }
 
 .card:hover .card-button-container {
@@ -123,6 +124,10 @@
                 display: none;
             }
         }
+
+        .equipment-loan-date {
+            text-align: center;
+        }
     }
 
     .card-button-container {
@@ -131,6 +136,10 @@
         gap: normal;
         margin-left: 0;
         margin-right: 0;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
         top: 1rem;
         transform: translateX(50%);
         justify-self: auto;
