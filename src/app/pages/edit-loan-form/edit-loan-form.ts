@@ -110,13 +110,13 @@ export class EditLoanForm {
     }
   }
 
-  onValidation(): void {
+  async onValidation(): Promise<void> {
     this.form.markAllAsTouched(); // affiche tous les messages d'erreur adéquats
     if (this.form.valid) {
 
-      // TEMPORAIRE
-      this.authService.getConnectedUser()
-
+      if (!this.authService.connectedUser()) {
+        await this.authService.getConnectedUser();
+      }
       const user = this.authService.connectedUser()
       const startDate = this.form.controls['startDate'].value
       const endDate = this.form.controls['endDate'].value
@@ -130,13 +130,14 @@ export class EditLoanForm {
         // Sélection des équipements à emprunter
         const equipmentsToBorrow = this.availableOfSelectedModel().slice(0, this.nbWanted())
 
-        var newLoans = []
+        const newLoans = []
 
-        for (var equipment of equipmentsToBorrow) {
+        for (const equipment of equipmentsToBorrow) {
           const newLoan = this.loanService.buildNewLoan(user, equipment, startDate, endDate)
           newLoans.push(newLoan)
-          this.loanService.newLoans.set(newLoans)
         }
+
+        this.loanService.newLoans.set(newLoans)
 
         // Redirection vers la page de validation
         this.router.navigate(['validation'], {
