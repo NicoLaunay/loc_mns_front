@@ -31,7 +31,8 @@ export class Signin {
       surname: ['', [Validators.required]],
       email: ['', [
         Validators.required,
-        Validators.email]],
+        Validators.email,
+      ]],
       password1: ['', [
         Validators.required,
         Validators.minLength(8),
@@ -43,7 +44,22 @@ export class Signin {
     {validators: [passwordConfirmationValidator] });
 
   onSignin() {
-    if (this.formulaire.valid) {
+    // check form validity
+    if (!this.formulaire.valid) {
+        this.notification.open('Formulaire invalide', 'error');
+        return;
+    }
+
+    const email = this.formulaire.controls.email.value;
+
+    // check email unicity
+    this.userService.emailExists(email).subscribe(exists => {
+      if (exists) {
+        this.notification.open('Email déjà existant', 'error');
+        return;
+      }
+
+      // user creation
       const newUser: NewAppUser = new BuildNewAppUser()
         .withName(this.formulaire.controls.name.value)
         .withSurname(this.formulaire.controls.surname.value)
@@ -54,9 +70,7 @@ export class Signin {
       console.log(newUser);
 
       this.userService.signin(newUser).subscribe()
-    } else {
-        console.log('pas valide');
-    }
-    
+    })
   }
+
 }

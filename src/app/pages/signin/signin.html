@@ -40,7 +40,7 @@
         
         <div class="form-field">
             <label>Mot de Passe</label>
-            <input formControlName="password1">
+            <input formControlName="password1" type="password">
 
             @if (formulaire.get('password1')?.touched) {
                 @if (formulaire.get('password1')?.hasError('required')) {
@@ -51,7 +51,7 @@
 
         <div class="form-field">
             <label>Mot de Passe</label>
-            <input formControlName="password2">
+            <input formControlName="password2" type="password">
 
             @if (formulaire.get('password2')?.touched) {
                 @if (formulaire.get('password2')?.hasError('required')) {
